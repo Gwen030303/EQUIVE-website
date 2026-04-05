@@ -148,6 +148,7 @@ export default function Features() {
           alt="EQUIVE rijbroek detail"
           fill
           sizes="100vw"
+          quality={75}
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/50 sm:to-black/30" />

@@ -3,8 +3,6 @@ import { Inter, DM_Sans, Outfit } from "next/font/google";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WaitlistModal from "@/components/WaitlistModal";
-import CartDrawer from "@/components/CartDrawer";
 import ClientOverlays from "@/components/ClientOverlays";
 import PageTransition from "@/components/PageTransition";
 import "./globals.css";
@@ -114,8 +112,6 @@ export default function RootLayout({
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />
-          <WaitlistModal />
-          <CartDrawer />
         </Providers>
         <script dangerouslySetInnerHTML={{ __html: `
           if ('serviceWorker' in navigator) {

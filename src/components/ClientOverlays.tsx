@@ -17,6 +17,12 @@ const ExitIntent = dynamic(() => import("@/components/ExitIntent"), {
 const AnalyticsLoader = dynamic(() => import("@/components/AnalyticsLoader"), {
   ssr: false,
 });
+const WaitlistModal = dynamic(() => import("@/components/WaitlistModal"), {
+  ssr: false,
+});
+const CartDrawer = dynamic(() => import("@/components/CartDrawer"), {
+  ssr: false,
+});
 
 export default function ClientOverlays() {
   return (
@@ -26,6 +32,8 @@ export default function ClientOverlays() {
       <ScrollToTop />
       <ExitIntent />
       <AnalyticsLoader />
+      <WaitlistModal />
+      <CartDrawer />
     </>
   );
 }

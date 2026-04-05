@@ -76,6 +76,7 @@ function Statement() {
               alt="Ruiter in het zadel met EQUIVE rijbroek — full-seat grip detail"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={75}
               className="object-cover"
             />
           </motion.div>
@@ -492,6 +493,7 @@ function SocialProof() {
           alt=""
           fill
           sizes="100vw"
+          quality={75}
           className="object-cover"
           aria-hidden="true"
         />
@@ -606,6 +608,7 @@ function LifestyleBreak() {
             alt="Ruiter in galop met EQUIVE rijbroek"
             fill
             sizes="(max-width: 768px) 100vw, 58vw"
+            quality={75}
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -637,6 +640,7 @@ function LifestyleBreak() {
             alt="EQUIVE rijbroek detail — drukknoop en glitter piping"
             fill
             sizes="(max-width: 768px) 100vw, 42vw"
+            quality={75}
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />

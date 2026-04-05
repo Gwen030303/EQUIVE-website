@@ -34,6 +34,7 @@ export default function OnsVerhaalContent() {
           fill
           priority
           sizes="100vw"
+          quality={75}
           className="object-cover object-[center_15%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
@@ -96,6 +97,7 @@ export default function OnsVerhaalContent() {
                 alt="Gwen met twee paarden"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={75}
                 className="object-cover"
               />
             </motion.div>
@@ -227,6 +229,7 @@ export default function OnsVerhaalContent() {
             alt="Ruiter in galop met EQUIVE rijbroek"
             fill
             sizes="100vw"
+            quality={75}
             className="object-cover object-top"
           />
         </motion.div>
