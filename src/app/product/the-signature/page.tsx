@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Product from "@/components/Collection";
 import Reviews from "@/components/Reviews";
-import VideoTestimonials from "@/components/VideoTestimonials";
 
 export const metadata: Metadata = {
   title: "The Signature Rijbroek | EQUIVE",
@@ -84,7 +83,6 @@ export default function ProductPage() {
       />
       <Product />
       <Reviews />
-      <VideoTestimonials />
     </>
   );
 }
