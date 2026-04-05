@@ -1,0 +1,5 @@
+# https://www.equive.nl robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.equive.nl/sitemap.xml
