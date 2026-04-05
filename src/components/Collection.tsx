@@ -311,9 +311,10 @@ export default function Product() {
               <div className="flex flex-col gap-6 md:sticky md:top-32">
                 {/* Title block */}
                 <div>
-                  <p className="font-sans text-[15px] md:text-[13px] tracking-[0.1em] uppercase text-black/60 mb-3">
-                    EQUIVE
-                  </p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-taupe/15 rounded-full mb-3">
+                    <span className="w-2 h-2 rounded-full bg-taupe animate-pulse" />
+                    <span className="font-sans text-[13px] font-medium text-taupe-dark">Pre-order</span>
+                  </div>
                   <h2 className="font-headline font-bold text-4xl sm:text-5xl text-black leading-[1.05] tracking-[-0.01em]">
                     The Signature
                   </h2>
@@ -339,9 +340,14 @@ export default function Product() {
                   </div>
                 </div>
 
-                <p className="font-sans text-[15px] md:text-[13px] text-black/60">
-                  Gratis verzending &middot; 30 dagen retour
-                </p>
+                <div className="bg-off-white rounded-xl p-4">
+                  <p className="font-sans text-[15px] md:text-sm font-medium text-black">
+                    Pre-order &mdash; Levertijd 8-10 weken
+                  </p>
+                  <p className="font-sans text-[13px] text-black/60 mt-1">
+                    Gratis verzending &middot; 30 dagen retour na ontvangst
+                  </p>
+                </div>
 
                 {/* Kleur */}
                 <div>
@@ -400,7 +406,7 @@ export default function Product() {
                   ) : added ? (
                     "Toegevoegd!"
                   ) : selectedSize ? (
-                    `In winkelwagen — Maat ${selectedSize}`
+                    `Pre-order — Maat ${selectedSize}`
                   ) : (
                     "Selecteer een maat"
                   )}
@@ -523,7 +529,7 @@ export default function Product() {
             }}
             className="px-6 py-3.5 min-h-[48px] bg-black text-white font-sans text-[15px] font-medium rounded-full hover:bg-taupe transition-all duration-300 active:scale-[0.98] flex-shrink-0"
           >
-            {selectedSize ? `Toevoegen — ${selectedSize}` : "Kies een maat"}
+            {selectedSize ? `Pre-order — ${selectedSize}` : "Kies een maat"}
           </button>
         </div>
       </motion.div>

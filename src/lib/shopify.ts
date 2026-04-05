@@ -207,3 +207,44 @@ export async function addToCart(
   );
   return data.cartLinesAdd.cart;
 }
+
+const UPDATE_CART = `
+  mutation UpdateCart($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      cart { ...CartFields }
+    }
+  }
+  ${CART_FRAGMENT}
+`;
+
+const REMOVE_FROM_CART = `
+  mutation RemoveFromCart($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart { ...CartFields }
+    }
+  }
+  ${CART_FRAGMENT}
+`;
+
+export async function updateCartItem(
+  cartId: string,
+  lineId: string,
+  quantity: number
+): Promise<ShopifyCart> {
+  const data = await shopifyFetch<{ cartLinesUpdate: { cart: ShopifyCart } }>(
+    UPDATE_CART,
+    { cartId, lines: [{ id: lineId, quantity }] }
+  );
+  return data.cartLinesUpdate.cart;
+}
+
+export async function removeFromCart(
+  cartId: string,
+  lineId: string
+): Promise<ShopifyCart> {
+  const data = await shopifyFetch<{ cartLinesRemove: { cart: ShopifyCart } }>(
+    REMOVE_FROM_CART,
+    { cartId, lineIds: [lineId] }
+  );
+  return data.cartLinesRemove.cart;
+}

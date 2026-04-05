@@ -1,13 +1,15 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback } from "react";
-import { createCart, addToCart, type ShopifyCart } from "./shopify";
+import { createCart, addToCart, updateCartItem, removeFromCart, type ShopifyCart } from "./shopify";
 
 interface CartContextType {
   cart: ShopifyCart | null;
   isLoading: boolean;
   isDrawerOpen: boolean;
   addItem: (variantId: string) => Promise<void>;
+  updateItem: (lineId: string, quantity: number) => Promise<void>;
+  removeItem: (lineId: string) => Promise<void>;
   goToCheckout: () => void;
   openDrawer: () => void;
   closeDrawer: () => void;
@@ -18,6 +20,8 @@ const CartContext = createContext<CartContextType>({
   isLoading: false,
   isDrawerOpen: false,
   addItem: async () => {},
+  updateItem: async () => {},
+  removeItem: async () => {},
   goToCheckout: () => {},
   openDrawer: () => {},
   closeDrawer: () => {},
@@ -52,6 +56,38 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     [cart]
   );
 
+  const updateItem = useCallback(
+    async (lineId: string, quantity: number) => {
+      if (!cart) return;
+      setIsLoading(true);
+      try {
+        const updated = await updateCartItem(cart.id, lineId, quantity);
+        setCart(updated);
+      } catch (err) {
+        console.error("Fout bij bijwerken:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [cart]
+  );
+
+  const removeItem = useCallback(
+    async (lineId: string) => {
+      if (!cart) return;
+      setIsLoading(true);
+      try {
+        const updated = await removeFromCart(cart.id, lineId);
+        setCart(updated);
+      } catch (err) {
+        console.error("Fout bij verwijderen:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [cart]
+  );
+
   const goToCheckout = useCallback(() => {
     if (cart?.checkoutUrl) {
       window.location.href = cart.checkoutUrl;
@@ -65,6 +101,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         isDrawerOpen,
         addItem,
+        updateItem,
+        removeItem,
         goToCheckout,
         openDrawer,
         closeDrawer,

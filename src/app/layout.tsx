@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans, Outfit } from "next/font/google";
 import { Providers } from "./providers";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WaitlistModal from "@/components/WaitlistModal";
@@ -110,7 +109,6 @@ export default function RootLayout({
         </a>
         <Providers>
           <ClientOverlays />
-          <AnnouncementBar />
           <Navbar />
           <main id="main-content">
             <PageTransition>{children}</PageTransition>
