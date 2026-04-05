@@ -66,7 +66,7 @@ export default function SizeGuide() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-8 overflow-y-auto"
+            className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-24 sm:py-8 overflow-y-auto"
           >
             <div
               className="absolute inset-0 bg-black/60"

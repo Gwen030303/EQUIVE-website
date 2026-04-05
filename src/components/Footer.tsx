@@ -47,12 +47,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-8 pb-14">
           {/* Brand column */}
           <FadeIn delay={0.1} className="col-span-1 sm:col-span-2 md:col-span-4">
-            <div className="relative h-10 w-32">
+            <div className="relative h-[90px] sm:h-[100px] md:h-[110px] w-[120px] sm:w-[130px] md:w-[140px]">
               <Image
                 src="/logo.webp"
                 alt="EQUIVE"
                 fill
-                sizes="128px"
+                sizes="140px"
                 className="object-contain object-left invert"
               />
             </div>

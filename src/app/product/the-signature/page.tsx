@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Product from "@/components/Collection";
-import HorizontalScroll from "@/components/HorizontalScroll";
 import Reviews from "@/components/Reviews";
 import VideoTestimonials from "@/components/VideoTestimonials";
-import ReferralBanner from "@/components/ReferralBanner";
 
 export const metadata: Metadata = {
   title: "The Signature Rijbroek | EQUIVE",
@@ -85,10 +83,8 @@ export default function ProductPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Product />
-      <HorizontalScroll />
       <Reviews />
       <VideoTestimonials />
-      <ReferralBanner />
     </>
   );
 }

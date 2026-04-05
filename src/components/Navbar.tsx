@@ -61,7 +61,7 @@ export default function Navbar() {
       >
         {/* ── Row 1: Logo center, icons flanking ── */}
         <div className="max-w-[1880px] mx-auto px-5 md:px-8">
-          <div className="flex items-center justify-between h-16 md:h-[76px]">
+          <div className="flex items-center justify-between h-14 md:h-[60px]">
             {/* Left: hamburger (mobile) / search (desktop) */}
             <div className="flex items-center gap-2 w-[160px]">
               {/* Mobile hamburger */}
@@ -102,7 +102,7 @@ export default function Navbar() {
               <img
                 src="/logo.webp"
                 alt="EQUIVE"
-                className={`h-[110px] sm:h-[120px] md:h-[140px] w-auto transition-all duration-500 ${
+                className={`h-[90px] sm:h-[100px] md:h-[110px] w-auto transition-all duration-500 ${
                   isTransparent
                     ? "invert brightness-200 contrast-125"
                     : "brightness-0"
@@ -150,7 +150,7 @@ export default function Navbar() {
           }`}
         >
           <div className="max-w-[1880px] mx-auto px-5 md:px-8">
-            <div className="flex items-center justify-center gap-14 h-12">
+            <div className="flex items-center justify-center gap-14 h-10">
               {navLinks.map((link) => {
                 const isActive =
                   pathname === link.href ||
