@@ -55,17 +55,12 @@ export async function POST(request: NextRequest) {
     // Random password — klant hoeft dit nooit te weten
     const randomPassword = crypto.randomUUID() + "Aa1!";
 
-    const tags: string[] = [type];
-    if (size) tags.push(`maat-${size}`);
-    if (source) tags.push(`bron-${source}`);
-
     const result = await shopifyStorefront(CREATE_CUSTOMER, {
       input: {
         email,
         firstName: name || undefined,
         password: randomPassword,
         acceptsMarketing: true,
-        tags,
       },
     });
 
