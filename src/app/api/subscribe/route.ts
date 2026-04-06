@@ -1,30 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
 
-const SUBSCRIBERS_FILE = path.join(process.cwd(), "subscribers.json");
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
+const storefrontToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
 
-interface Subscriber {
-  email: string;
-  name?: string;
-  size?: string;
-  source?: string;
-  type: "newsletter" | "waitlist" | "collection-drop";
-  timestamp: string;
+const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+
+async function shopifyStorefront(query: string, variables?: Record<string, unknown>) {
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": storefrontToken,
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  return res.json();
 }
 
-async function readSubscribers(): Promise<Subscriber[]> {
-  try {
-    const data = await fs.readFile(SUBSCRIBERS_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+const CREATE_CUSTOMER = `
+  mutation customerCreate($input: CustomerCreateInput!) {
+    customerCreate(input: $input) {
+      customer {
+        id
+        email
+      }
+      customerUserErrors {
+        field
+        message
+      }
+    }
   }
-}
-
-async function writeSubscribers(subscribers: Subscriber[]): Promise<void> {
-  await fs.writeFile(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
-}
+`;
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,35 +52,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const subscribers = await readSubscribers();
+    // Random password — klant hoeft dit nooit te weten
+    const randomPassword = crypto.randomUUID() + "Aa1!";
 
-    const existing = subscribers.find(
-      (s) => s.email === email && s.type === type
-    );
-    if (existing) {
-      return NextResponse.json({ success: true, message: "Al ingeschreven." });
-    }
+    const tags: string[] = [type];
+    if (size) tags.push(`maat-${size}`);
+    if (source) tags.push(`bron-${source}`);
 
-    subscribers.push({
-      email,
-      name: name || undefined,
-      size: size || undefined,
-      source: source || undefined,
-      type,
-      timestamp: new Date().toISOString(),
+    const result = await shopifyStorefront(CREATE_CUSTOMER, {
+      input: {
+        email,
+        firstName: name || undefined,
+        password: randomPassword,
+        acceptsMarketing: true,
+        tags,
+      },
     });
 
-    await writeSubscribers(subscribers);
+    const errors = result.data?.customerCreate?.customerUserErrors;
 
-    // TODO: Vervang dit met Klaviyo API call wanneer je API key hebt:
-    // await fetch("https://a.klaviyo.com/api/v2/list/LIST_ID/subscribe", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     api_key: process.env.KLAVIYO_API_KEY,
-    //     profiles: [{ email, first_name: name, properties: { size, source, type } }],
-    //   }),
-    // });
+    // "TAKEN" = al geregistreerd, dat is ok
+    if (errors?.length > 0 && errors[0].message !== "Email has already been taken") {
+      return NextResponse.json(
+        { error: errors[0].message },
+        { status: 400 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch {
