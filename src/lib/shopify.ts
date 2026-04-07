@@ -106,6 +106,80 @@ export async function getProduct(handle: string): Promise<ShopifyProduct | null>
   }
 }
 
+// ─── Producten lijst ophalen ───────────────────────────────
+
+const GET_PRODUCTS = `
+  query GetProducts($first: Int!) {
+    products(first: $first, sortKey: CREATED_AT, reverse: true) {
+      edges {
+        node {
+          id
+          title
+          handle
+          description
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          images(first: 2) {
+            edges {
+              node {
+                url
+                altText
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export interface ShopifyProductSummary {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  priceRange: {
+    minVariantPrice: { amount: string; currencyCode: string };
+  };
+  images: {
+    edges: {
+      node: { url: string; altText: string | null; width: number; height: number };
+    }[];
+  };
+}
+
+export async function getProducts(first = 24): Promise<ShopifyProductSummary[]> {
+  try {
+    const data = await shopifyFetch<{
+      products: { edges: { node: ShopifyProductSummary }[] };
+    }>(GET_PRODUCTS, { first });
+    return data.products.edges.map((edge) => edge.node);
+  } catch {
+    return [];
+  }
+}
+
+// ─── Helper: bouw maat → variantId map ─────────────────────
+
+export function buildSizeVariantMap(product: ShopifyProduct): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const edge of product.variants.edges) {
+    const sizeOption = edge.node.selectedOptions.find(
+      (o) => o.name.toLowerCase() === "maat" || o.name.toLowerCase() === "size"
+    );
+    if (sizeOption && edge.node.availableForSale) {
+      map[sizeOption.value.toUpperCase()] = edge.node.id;
+    }
+  }
+  return map;
+}
+
 // ─── Winkelwagen ───────────────────────────────────────────
 
 export interface ShopifyCart {

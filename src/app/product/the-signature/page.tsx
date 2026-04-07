@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Product from "@/components/Collection";
 import Reviews from "@/components/Reviews";
+import { getProduct, buildSizeVariantMap } from "@/lib/shopify";
+
+const PRODUCT_HANDLE = "the-signature";
 
 export const metadata: Metadata = {
   title: "The Signature Rijbroek | EQUIVE",
@@ -74,14 +77,17 @@ const jsonLd = {
   ],
 };
 
-export default function ProductPage() {
+export default async function ProductPage() {
+  const product = await getProduct(PRODUCT_HANDLE);
+  const variantIdsBySize = product ? buildSizeVariantMap(product) : {};
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Product />
+      <Product variantIdsBySize={variantIdsBySize} />
       <Reviews />
     </>
   );

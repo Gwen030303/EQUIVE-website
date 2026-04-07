@@ -73,15 +73,6 @@ const accordionData = [
   },
 ];
 
-/* ── Variant ID mapping (Shopify) ─────────────────────────────── */
-const VARIANT_IDS: Record<string, string> = {
-  XS: "gid://shopify/ProductVariant/54329715425603",
-  S: "gid://shopify/ProductVariant/54329715458371",
-  M: "gid://shopify/ProductVariant/54329715491139",
-  L: "gid://shopify/ProductVariant/54329715523907",
-  XL: "gid://shopify/ProductVariant/54329715556675",
-};
-
 const PAYMENT_METHODS = ["iDEAL", "Visa", "Mastercard", "Klarna", "PayPal"];
 
 function Accordion({ title, content }: { title: string; content: string[] }) {
@@ -165,7 +156,11 @@ function ZoomImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export default function Product() {
+interface ProductProps {
+  variantIdsBySize?: Record<string, string>;
+}
+
+export default function Product({ variantIdsBySize = {} }: ProductProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [added, setAdded] = useState(false);
@@ -195,8 +190,11 @@ export default function Product() {
 
   const handleAddToCart = async () => {
     if (!selectedSize) return;
-    const variantId = VARIANT_IDS[selectedSize];
-    if (!variantId) return;
+    const variantId = variantIdsBySize[selectedSize];
+    if (!variantId) {
+      setError("Deze maat is momenteel niet beschikbaar.");
+      return;
+    }
     try {
       setError(null);
       await addItem(variantId);
@@ -366,22 +364,29 @@ export default function Product() {
                     <SizeGuide />
                   </div>
                   <div className="flex gap-2 flex-wrap">
-                    {SIZES.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`relative w-14 h-14 md:w-12 md:h-12 rounded-lg font-sans text-base md:text-sm font-medium transition-all duration-300 ${
-                          selectedSize === size
-                            ? "bg-black text-white"
-                            : "bg-off-white text-black hover:bg-black/[0.06] border border-black/[0.08]"
-                        }`}
-                      >
-                        {size}
-                        {size === "M" && (
-                          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-taupe" title="Meest gekozen" />
-                        )}
-                      </button>
-                    ))}
+                    {SIZES.map((size) => {
+                      const available = Boolean(variantIdsBySize[size]);
+                      return (
+                        <button
+                          key={size}
+                          onClick={() => available && setSelectedSize(size)}
+                          disabled={!available}
+                          aria-label={available ? `Maat ${size}` : `Maat ${size} niet beschikbaar`}
+                          className={`relative w-14 h-14 md:w-12 md:h-12 rounded-lg font-sans text-base md:text-sm font-medium transition-all duration-300 ${
+                            !available
+                              ? "bg-off-white text-black/30 line-through cursor-not-allowed border border-black/[0.04]"
+                              : selectedSize === size
+                              ? "bg-black text-white"
+                              : "bg-off-white text-black hover:bg-black/[0.06] border border-black/[0.08]"
+                          }`}
+                        >
+                          {size}
+                          {size === "M" && available && (
+                            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-taupe" title="Meest gekozen" />
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                   <p className="font-sans text-[15px] md:text-[13px] text-black/60 mt-2">
                     Maat M is het meest gekozen
