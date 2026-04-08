@@ -41,7 +41,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-16">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-12">
       {products.map((product) => {
         const primary = product.images.edges[0]?.node;
         const secondary = product.images.edges[1]?.node ?? primary;
@@ -84,16 +84,16 @@ export default function ProductGrid({ products }: ProductGridProps) {
               </div>
             </div>
 
-            <div className="mt-5 flex items-start justify-between gap-4">
-              <div>
-                <h3 className="font-headline font-bold text-xl text-black tracking-[-0.005em] leading-tight">
+            <div className="mt-4 flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <h3 className="font-headline font-bold text-base md:text-lg text-black tracking-[-0.005em] leading-tight truncate">
                   {product.title}
                 </h3>
-                <p className="font-sub font-normal text-[13px] text-taupe mt-1">
+                <p className="font-sub font-normal text-[12px] md:text-[13px] text-taupe mt-0.5">
                   Rijbroek
                 </p>
               </div>
-              <span className="font-headline font-light text-lg text-black whitespace-nowrap mt-0.5">
+              <span className="font-headline font-light text-base md:text-lg text-black whitespace-nowrap mt-0.5">
                 {price}
               </span>
             </div>

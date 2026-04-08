@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import ProductGrid from "@/components/ProductGrid";
+import TextScramble from "@/components/TextScramble";
 import { getProducts } from "@/lib/shopify";
 
 export const metadata: Metadata = {
@@ -30,46 +31,47 @@ export default async function ShopPage() {
   const products = await getProducts();
 
   return (
-    <section className="pt-32 md:pt-40 pb-16 md:pb-24 bg-white">
-      <div className="max-w-[1880px] mx-auto px-5 md:px-8">
-        {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="mb-10">
-          <ol className="flex items-center gap-2 font-sans text-[15px] md:text-sm text-black/60">
-            <li>
-              <Link
-                href="/"
-                className="hover:text-black transition-colors min-h-[48px] md:min-h-[44px] inline-flex items-center"
-              >
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-black" aria-current="page">
-              Shop
-            </li>
-          </ol>
-        </nav>
+    <>
+      {/* ── Hero ── */}
+      <section className="relative h-[52vh] min-h-[380px] md:h-[60vh] md:min-h-[460px] w-full overflow-hidden">
+        <Image
+          src="/shop-hero.png"
+          alt="EQUIVE Collectie"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
+        {/* Subtle gradient — top + bottom darker so tekst leesbaar blijft */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/55" />
 
-        {/* Header */}
-        <header className="max-w-3xl mb-14 md:mb-20">
-          <span className="font-sans text-[12px] tracking-[0.3em] uppercase text-taupe">
-            De Collectie
-          </span>
-          <div className="w-12 h-px bg-taupe/25 mt-4 mb-6" />
-          <h1 className="font-headline font-bold text-4xl sm:text-5xl md:text-6xl text-black leading-[1.02] tracking-[-0.01em]">
-            Comfort of stijl?
-            <br />
-            Allebei.
+        {/* Editorial composition */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-white text-center">
+          {/* Main headline */}
+          <h1 className="font-headline font-bold leading-[0.85] tracking-[-0.02em] drop-shadow-[0_2px_30px_rgba(0,0,0,0.45)]">
+            <TextScramble
+              text="COLLECTIE"
+              className="block text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
+            />
           </h1>
-          <p className="font-sans text-[15px] md:text-base text-black/70 leading-relaxed mt-5 max-w-xl">
-            Rijkleding ontworpen in Amsterdam. Eerlijke prijzen, geen
-            tussenhandelaren — alleen het beste van comfort en stijl, in elk stuk.
-          </p>
-        </header>
 
-        {/* Grid */}
-        <ProductGrid products={products} />
-      </div>
-    </section>
+          {/* Subtitle */}
+          <div className="flex items-center gap-4 md:gap-5 mt-7 md:mt-12 opacity-85">
+            <span aria-hidden="true" className="block w-8 md:w-12 h-px bg-white/50" />
+            <span className="font-sans text-[11px] md:text-[13px] tracking-[0.32em] uppercase">
+              Lente &mdash; Zomer 2026
+            </span>
+            <span aria-hidden="true" className="block w-8 md:w-12 h-px bg-white/50" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Grid ── */}
+      <section className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white">
+        <div className="max-w-[1880px] mx-auto px-5 md:px-8">
+          <ProductGrid products={products} />
+        </div>
+      </section>
+    </>
   );
 }
