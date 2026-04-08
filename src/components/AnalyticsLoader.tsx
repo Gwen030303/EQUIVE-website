@@ -1,5 +1,7 @@
 "use client";
 
+// Analytics loader: GA4 + Meta Pixel, gated by cookie consent.
+// Build-time inlined env vars (NEXT_PUBLIC_*) — must be set in Vercel.
 import { useState, useEffect } from "react";
 import Script from "next/script";
 
