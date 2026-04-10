@@ -1,0 +1,178 @@
+<!--
+  EQUIVE — Shipping Confirmation Email
+  Onderwerp: Je bestelling is onderweg, {{ customer.first_name }}!
+  Plak deze hele HTML in: Shopify → Instellingen → Meldingen → Verzending bevestigd
+-->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ shop.name }} — Je bestelling is onderweg</title>
+</head>
+<body style="margin:0; padding:0; background:#FAFAF7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color:#1a1a1a; -webkit-font-smoothing: antialiased;">
+
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FAFAF7;">
+    <tr>
+      <td align="center" style="padding: 32px 16px;">
+
+        <!-- ─── Container ─── -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px; background:#ffffff; border:1px solid #E8E5DE;">
+
+          <!-- Header / Logo -->
+          <tr>
+            <td align="center" style="padding: 40px 32px 32px 32px; border-bottom: 1px solid #E8E5DE;">
+              <a href="{{ shop.url }}" style="text-decoration:none; color:#000000;">
+                <img src="https://www.equive.shop/logo-email.png" alt="EQUIVE" width="160" style="display:block; border:0; outline:none; max-width:160px; height:auto;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Hero greeting -->
+          <tr>
+            <td style="padding: 48px 40px 0 40px;">
+              <p style="margin:0 0 12px 0; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color:#B8A691; font-weight: 600;">Onderweg</p>
+              <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 34px; line-height: 1.15; font-weight: 700; color:#000000; letter-spacing: -0.01em;">Je bestelling is verzonden!</h1>
+            </td>
+          </tr>
+
+          <!-- Warm message -->
+          <tr>
+            <td style="padding: 20px 40px 36px 40px;">
+              <p style="margin:0; font-size: 16px; line-height: 1.65; color:#3a3a3a;">
+                Goed nieuws, {{ customer.first_name }} — je pakket is ingepakt en onderweg naar jou. Hieronder vind je de track & trace link zodat je precies kunt volgen waar het is.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Track & Trace CTA -->
+          <tr>
+            <td align="center" style="padding: 0 40px 20px 40px;">
+              <a href="{{ fulfillment.tracking_url }}" style="display:inline-block; background:#000000; color:#ffffff; text-decoration:none; padding: 16px 40px; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;">
+                Volg je pakket
+              </a>
+            </td>
+          </tr>
+
+          <!-- Tracking info -->
+          {% if fulfillment.tracking_number %}
+          <tr>
+            <td align="center" style="padding: 0 40px 44px 40px;">
+              <p style="margin:0; font-size: 13px; color:#7a7a7a;">Trackingnummer: <strong style="color:#3a3a3a;">{{ fulfillment.tracking_number }}</strong></p>
+              {% if fulfillment.tracking_company %}
+              <p style="margin: 4px 0 0 0; font-size: 13px; color:#7a7a7a;">Vervoerder: {{ fulfillment.tracking_company }}</p>
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="border-top: 1px solid #E8E5DE; height: 1px; line-height: 1px; font-size: 1px;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <!-- Order details header -->
+          <tr>
+            <td style="padding: 36px 40px 0 40px;">
+              <p style="margin:0 0 16px 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color:#B8A691; font-weight: 600;">Wat zit er in je pakket</p>
+            </td>
+          </tr>
+
+          <!-- Line items -->
+          <tr>
+            <td style="padding: 0 40px 8px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                {% for line in fulfillment.fulfillment_line_items %}
+                <tr>
+                  <td style="padding: 18px 0; border-bottom: 1px solid #F2F0EA; vertical-align: top;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        {% if line.line_item.image %}
+                        <td width="84" style="vertical-align: top; padding-right: 18px;">
+                          <img src="{{ line.line_item | img_url: '160x' }}" alt="{{ line.line_item.title }}" width="80" style="display:block; border:1px solid #E8E5DE; max-width: 80px;">
+                        </td>
+                        {% endif %}
+                        <td style="vertical-align: top;">
+                          <p style="margin:0 0 4px 0; font-size: 15px; font-weight: 600; color:#000000; line-height: 1.3;">{{ line.line_item.title }}</p>
+                          {% if line.line_item.variant.title != 'Default Title' %}
+                          <p style="margin:0 0 6px 0; font-size: 13px; color:#7a7a7a;">{{ line.line_item.variant.title }}</p>
+                          {% endif %}
+                          <p style="margin:0; font-size: 13px; color:#7a7a7a;">Aantal: {{ line.quantity }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- Shipping address -->
+          {% if shipping_address %}
+          <tr>
+            <td style="padding: 24px 40px 36px 40px;">
+              <p style="margin:0 0 12px 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color:#B8A691; font-weight: 600;">Bezorgadres</p>
+              <p style="margin:0; font-size: 14px; color:#3a3a3a; line-height: 1.7;">
+                {{ shipping_address.name }}<br>
+                {{ shipping_address.street }}<br>
+                {{ shipping_address.zip }} {{ shipping_address.city }}<br>
+                {{ shipping_address.country }}
+              </p>
+            </td>
+          </tr>
+          {% endif %}
+
+          <!-- Delivery note -->
+          <tr>
+            <td style="background:#FAFAF7; padding: 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin:0; font-size: 15px; line-height: 1.6; color:#3a3a3a;">
+                      De meeste pakketten worden binnen <strong style="color:#000;">1–2 werkdagen</strong> bezorgd. Niet thuis? Geen zorgen — de vervoerder laat een bericht achter.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Personal sign-off -->
+          <tr>
+            <td style="padding: 44px 40px 36px 40px;">
+              <p style="margin:0; font-size: 15px; line-height: 1.65; color:#3a3a3a; font-style: italic;">
+                We hopen dat je er net zo blij mee bent als wij. Heb je vragen? Reageer gewoon op deze mail — we helpen je graag.
+              </p>
+              <p style="margin: 18px 0 0 0; font-size: 14px; color:#000000; font-weight: 600;">— Het EQUIVE Team</p>
+            </td>
+          </tr>
+
+        </table>
+
+        <!-- ─── Footer ─── -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;">
+          <tr>
+            <td align="center" style="padding: 36px 16px 16px 16px;">
+              <p style="margin: 0 0 18px 0; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color:#7a7a7a; font-weight: 500;">Volg ons voor inspiratie</p>
+              <p style="margin: 0 0 28px 0;">
+                <a href="https://instagram.com/equiveequestrian" style="display:inline-block; padding: 0 10px; font-size: 13px; color:#000000; text-decoration:none; font-weight: 600;">Instagram</a>
+                <span style="color:#B8A691; padding: 0 4px;">·</span>
+                <a href="{{ shop.url }}" style="display:inline-block; padding: 0 10px; font-size: 13px; color:#000000; text-decoration:none; font-weight: 600;">Website</a>
+              </p>
+              <p style="margin: 0 0 8px 0; font-size: 11px; color:#9a9a9a; letter-spacing: 0.06em;">EQUIVE EQUESTRIAN · AMSTERDAM</p>
+              <p style="margin: 0; font-size: 11px; color:#9a9a9a;">
+                <a href="mailto:support@equive.shop" style="color:#9a9a9a; text-decoration: underline;">support@equive.shop</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

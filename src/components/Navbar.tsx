@@ -6,7 +6,7 @@ import { Bag } from "@phosphor-icons/react/dist/ssr/Bag";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
 import { X } from "@phosphor-icons/react/dist/ssr/X";
 import { useCart } from "@/lib/cart-context";
-import { useWaitlist } from "@/lib/waitlist-context";
+import { User } from "@phosphor-icons/react/dist/ssr/User";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SearchModal from "@/components/SearchModal";
@@ -29,7 +29,7 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const { cart, openDrawer } = useCart();
   const itemCount = cart?.totalQuantity ?? 0;
-  const { openWaitlist } = useWaitlist();
+  const accountUrl = `https://shop.equive.shop/account`;
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -112,16 +112,17 @@ export default function Navbar() {
 
             {/* Right: waitlist + cart */}
             <div className="flex items-center gap-3 w-[160px] justify-end">
-              <button
-                onClick={openWaitlist}
-                className={`hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              <a
+                href={accountUrl}
+                className={`hidden md:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   isTransparent
                     ? "bg-white text-black hover:bg-white/85"
                     : "bg-black text-white hover:bg-taupe"
                 }`}
               >
-                Waitlist
-              </button>
+                <User size={16} weight="bold" />
+                Account
+              </a>
               <button
                 onClick={openDrawer}
                 className={`relative inline-flex items-center justify-center w-11 h-11 transition-colors duration-300 ${
@@ -260,15 +261,14 @@ export default function Navbar() {
               className="absolute bottom-0 left-0 right-0 px-6 pb-[max(2rem,env(safe-area-inset-bottom))]"
             >
               <div className="flex gap-3 mb-6">
-                <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    openWaitlist();
-                  }}
-                  className="flex-1 inline-flex items-center justify-center min-h-[52px] bg-black text-white font-sans text-sm font-medium rounded-full"
+                <a
+                  href={accountUrl}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 inline-flex items-center justify-center gap-2 min-h-[52px] bg-black text-white font-sans text-sm font-medium rounded-full"
                 >
-                  Waitlist
-                </button>
+                  <User size={16} weight="bold" />
+                  Account
+                </a>
                 <button
                   onClick={() => {
                     setMobileOpen(false);

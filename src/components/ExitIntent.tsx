@@ -179,8 +179,14 @@ export default function ExitIntent() {
                 <p className="font-sub font-normal text-2xl text-off-white">
                   Je bent erbij!
                 </p>
-                <p className="font-sans text-sm text-off-white/60 mt-2">
-                  Check je inbox voor je persoonlijke code.
+                <p className="font-sans text-sm text-off-white/60 mt-3 leading-relaxed">
+                  Gebruik onderstaande code bij het afrekenen:
+                </p>
+                <div className="mt-4 mb-3 inline-block bg-white/10 border border-taupe/40 rounded-lg px-6 py-3">
+                  <span className="font-mono text-xl font-bold tracking-[0.12em] text-off-white">COMEBACK10</span>
+                </div>
+                <p className="font-sans text-xs text-off-white/40 mt-1">
+                  10% korting op je eerste bestelling
                 </p>
               </div>
             ) : (
