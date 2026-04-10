@@ -7,7 +7,7 @@ export default function ReferralBanner() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard?.writeText("https://equive.nl/ref/jouwcode");
+    navigator.clipboard?.writeText("https://equive.shop/ref/jouwcode");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, []);
@@ -39,7 +39,7 @@ export default function ReferralBanner() {
           <FadeIn delay={0.3}>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
               <div className="flex-1 w-full px-5 py-3 bg-white border border-taupe/20 rounded-full font-sans text-sm text-taupe-dark select-all text-left">
-                equive.nl/ref/jouwcode
+                equive.shop/ref/jouwcode
               </div>
               <button
                 type="button"

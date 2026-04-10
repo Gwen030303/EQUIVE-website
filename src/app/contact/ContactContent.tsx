@@ -175,7 +175,7 @@ export default function ContactContent() {
             <FadeIn direction="up" delay={0.1}>
               <div className="flex flex-col gap-8 lg:gap-12 lg:pt-12">
                 {[
-                  { icon: Envelope, label: "E-mail", value: "info@equive.nl", href: "mailto:info@equive.nl", sub: null },
+                  { icon: Envelope, label: "E-mail", value: "info@equive.shop", href: "mailto:info@equive.shop", sub: null },
                   { icon: InstagramLogo, label: "Instagram", value: "@equiveeequestrian", href: INSTAGRAM_URL, sub: "DM ons gerust — we reageren daar ook." },
                   { icon: MapPin, label: "Locatie", value: "Amsterdam, Nederland", href: null, sub: "Ontworpen in Amsterdam, gemaakt voor de rijhal." },
                 ].map(({ icon: Icon, label, value, href, sub }, i) => (
@@ -253,7 +253,7 @@ export default function ContactContent() {
               { q: "Welke maat moet ik kiezen?", a: "Gebruik onze maatquiz \u2014 in 30 seconden weet je het." },
               { q: "Wanneer wordt mijn bestelling verzonden?", a: "Bestellingen voor 16:00 worden dezelfde werkdag verzonden." },
               { q: "Waar worden de broeken gemaakt?", a: "Ontworpen in Amsterdam. Geproduceerd in Europa." },
-              { q: "Kan ik mijn bestelling wijzigen?", a: "Mail ons op info@equive.nl zo snel mogelijk na je bestelling." },
+              { q: "Kan ik mijn bestelling wijzigen?", a: "Mail ons op info@equive.shop zo snel mogelijk na je bestelling." },
             ].map((item, i) => (
               <motion.div
                 key={item.q}

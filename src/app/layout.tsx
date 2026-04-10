@@ -26,7 +26,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.equive.nl"),
+  metadataBase: new URL("https://www.equive.shop"),
   alternates: {
     canonical: "/",
   },
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: "EQUIVE | Premium Rijbroeken",
     description:
       "EQUIVE — rijbroeken voor ruiters die niet kiezen tussen comfort en stijl. Premium ruiterkleding ontworpen in Amsterdam.",
-    url: "https://www.equive.nl",
+    url: "https://www.equive.shop",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Contact | EQUIVE",
     description:
       "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
-    url: "https://www.equive.nl/contact",
+    url: "https://www.equive.shop/contact",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

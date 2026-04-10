@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Signature Rijbroek | EQUIVE",
     description: "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
-    url: "https://www.equive.nl/product/the-signature",
+    url: "https://www.equive.shop/product/the-signature",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",
@@ -34,8 +34,8 @@ const jsonLd = {
       name: "The Signature Rijbroek",
       description:
         "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
-      image: "https://www.equive.nl/product-signature.webp",
-      url: "https://www.equive.nl/product/the-signature",
+      image: "https://www.equive.shop/product-signature.webp",
+      url: "https://www.equive.shop/product/the-signature",
       brand: {
         "@type": "Brand",
         name: "EQUIVE",
@@ -48,7 +48,7 @@ const jsonLd = {
         price: 79.95,
         priceCurrency: "EUR",
         availability: "https://schema.org/PreOrder",
-        url: "https://www.equive.nl/product/the-signature",
+        url: "https://www.equive.shop/product/the-signature",
       },
     },
     {
@@ -58,19 +58,19 @@ const jsonLd = {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.equive.nl",
+          item: "https://www.equive.shop",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Shop",
-          item: "https://www.equive.nl/shop",
+          item: "https://www.equive.shop/shop",
         },
         {
           "@type": "ListItem",
           position: 3,
           name: "The Signature",
-          item: "https://www.equive.nl/product/the-signature",
+          item: "https://www.equive.shop/product/the-signature",
         },
       ],
     },

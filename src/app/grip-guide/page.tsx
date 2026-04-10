@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Grip Guide | EQUIVE",
     description: "Ontdek waarom full-seat siliconen grip het verschil maakt. Vergelijk kniegrip, half-seat en full-seat grip en leer waarom EQUIVE kiest voor maximale controle.",
-    url: "https://www.equive.nl/grip-guide",
+    url: "https://www.equive.shop/grip-guide",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

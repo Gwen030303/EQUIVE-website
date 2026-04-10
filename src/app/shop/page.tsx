@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shop | EQUIVE",
     description: "Bekijk de collectie premium rijbroeken van EQUIVE. Rijkleding ontworpen in Amsterdam — comfort én stijl, zonder concessies.",
-    url: "https://www.equive.nl/shop",
+    url: "https://www.equive.shop/shop",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

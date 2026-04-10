@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Algemene Voorwaarden | EQUIVE",
     description: "Lees de algemene voorwaarden van EQUIVE. Informatie over bestellingen, verzending, retourneren en garantie.",
-    url: "https://www.equive.nl/algemene-voorwaarden",
+    url: "https://www.equive.shop/algemene-voorwaarden",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",
@@ -31,7 +31,7 @@ const sections = [
   {
     title: "1. Algemeen",
     content:
-      "Deze algemene voorwaarden zijn van toepassing op alle bestellingen geplaatst via de website van EQUIVE (www.equive.nl). Door een bestelling te plaatsen, ga je akkoord met deze voorwaarden. EQUIVE behoudt zich het recht voor om deze voorwaarden te wijzigen.",
+      "Deze algemene voorwaarden zijn van toepassing op alle bestellingen geplaatst via de website van EQUIVE (www.equive.shop). Door een bestelling te plaatsen, ga je akkoord met deze voorwaarden. EQUIVE behoudt zich het recht voor om deze voorwaarden te wijzigen.",
   },
   {
     title: "2. Prijzen & Betaling",

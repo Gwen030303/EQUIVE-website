@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacybeleid | EQUIVE",
     description: "Lees het privacybeleid van EQUIVE. Wij respecteren je privacy en beschermen je persoonsgegevens conform de AVG.",
-    url: "https://www.equive.nl/privacybeleid",
+    url: "https://www.equive.shop/privacybeleid",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

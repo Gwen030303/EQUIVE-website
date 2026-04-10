@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Veelgestelde Vragen | EQUIVE",
     description: "Antwoorden op veelgestelde vragen over EQUIVE rijbroeken. Maatadvies, verzending, retour en meer.",
-    url: "https://www.equive.nl/faq",
+    url: "https://www.equive.shop/faq",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

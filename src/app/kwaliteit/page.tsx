@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kwaliteit & Technologie | EQUIVE",
     description: "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
-    url: "https://www.equive.nl/kwaliteit",
+    url: "https://www.equive.shop/kwaliteit",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

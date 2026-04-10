@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Duurzaamheid | EQUIVE",
     description:
       "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
-    url: "https://www.equive.nl/duurzaamheid",
+    url: "https://www.equive.shop/duurzaamheid",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

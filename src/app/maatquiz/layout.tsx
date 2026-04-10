@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vind Jouw Maat | EQUIVE",
     description: "Doe de EQUIVE maatquiz en ontdek welke maat rijbroek perfect bij jou past. In 3 stappen naar jouw ideale maat.",
-    url: "https://www.equive.nl/maatquiz",
+    url: "https://www.equive.shop/maatquiz",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

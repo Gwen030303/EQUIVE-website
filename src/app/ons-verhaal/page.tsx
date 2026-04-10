@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Ons Verhaal | EQUIVE",
     description:
       "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
-    url: "https://www.equive.nl/ons-verhaal",
+    url: "https://www.equive.shop/ons-verhaal",
     siteName: "EQUIVE",
     locale: "nl_NL",
     type: "website",

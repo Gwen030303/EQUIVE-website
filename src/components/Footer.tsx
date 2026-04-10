@@ -9,7 +9,7 @@ const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
   "https://instagram.com/equiveeequestrian";
 const TIKTOK_URL =
-  process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@equive.nl";
+  process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@equive.shop";
 const PINTEREST_URL =
   process.env.NEXT_PUBLIC_PINTEREST_URL ||
   "https://www.pinterest.com/equive/";
