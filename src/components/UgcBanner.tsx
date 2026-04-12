@@ -5,7 +5,7 @@ import { InstagramLogo } from "@phosphor-icons/react/dist/ssr/InstagramLogo";
 
 const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
-  "https://instagram.com/equiveeequestrian";
+  "https://instagram.com/equiveequestrian";
 
 export default function UgcBanner() {
   return (
@@ -25,7 +25,7 @@ export default function UgcBanner() {
 
         <FadeIn delay={0.15}>
           <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {["@equiveeequestrian", "#RijdMetEQUIVE", "#EQUIVERiders"].map(
+            {["@equiveequestrian", "#RijdMetEQUIVE", "#EQUIVERiders"].map(
               (tag) => (
                 <span
                   key={tag}

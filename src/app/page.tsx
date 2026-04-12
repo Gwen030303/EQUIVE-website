@@ -16,7 +16,7 @@ const jsonLd = {
       description:
         "EQUIVE — rijbroeken voor ruiters die niet kiezen tussen comfort en stijl. Premium ruiterkleding ontworpen in Amsterdam.",
       sameAs: [
-        "https://instagram.com/equiveeequestrian",
+        "https://instagram.com/equiveequestrian",
         "https://www.tiktok.com/@equive.shop",
         "https://www.pinterest.com/equive/",
       ],

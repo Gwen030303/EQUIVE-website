@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
-  "https://instagram.com/equiveeequestrian";
+  "https://instagram.com/equiveequestrian";
 const TIKTOK_URL =
   process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/@equive.shop";
 const PINTEREST_URL =

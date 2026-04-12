@@ -2,9 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-const WhatsApp = dynamic(() => import("@/components/WhatsApp"), {
-  ssr: false,
-});
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"), {
   ssr: false,
 });
@@ -27,7 +24,6 @@ const CartDrawer = dynamic(() => import("@/components/CartDrawer"), {
 export default function ClientOverlays() {
   return (
     <>
-      <WhatsApp />
       <CookieConsent />
       <ScrollToTop />
       <ExitIntent />

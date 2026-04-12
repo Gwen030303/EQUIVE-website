@@ -11,7 +11,7 @@ import {
   MapPin,
 } from "@phosphor-icons/react/dist/ssr";
 
-const INSTAGRAM_URL = "https://instagram.com/equiveeequestrian";
+const INSTAGRAM_URL = "https://instagram.com/equiveequestrian";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactContent() {
@@ -176,7 +176,7 @@ export default function ContactContent() {
               <div className="flex flex-col gap-8 lg:gap-12 lg:pt-12">
                 {[
                   { icon: Envelope, label: "E-mail", value: "info@equive.shop", href: "mailto:info@equive.shop", sub: null },
-                  { icon: InstagramLogo, label: "Instagram", value: "@equiveeequestrian", href: INSTAGRAM_URL, sub: "DM ons gerust — we reageren daar ook." },
+                  { icon: InstagramLogo, label: "Instagram", value: "@equiveequestrian", href: INSTAGRAM_URL, sub: "DM ons gerust — we reageren daar ook." },
                   { icon: MapPin, label: "Locatie", value: "Amsterdam, Nederland", href: null, sub: "Ontworpen in Amsterdam, gemaakt voor de rijhal." },
                 ].map(({ icon: Icon, label, value, href, sub }, i) => (
                   <div key={label} className="flex items-start gap-4">

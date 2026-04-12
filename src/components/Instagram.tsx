@@ -11,7 +11,7 @@ interface InstaPost {
   caption?: string;
 }
 
-const HANDLE = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "equiveeequestrian";
+const HANDLE = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "equiveequestrian";
 
 // Fallback afbeeldingen voor als de API nog niet is gekoppeld
 const fallbackPosts = [
