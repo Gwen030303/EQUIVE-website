@@ -32,6 +32,31 @@ export const metadata: Metadata = {
   },
 };
 
+const onsVerhaalJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Ons Verhaal | EQUIVE",
+  description:
+    "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
+  url: "https://www.equive.shop/ons-verhaal",
+  publisher: { "@id": "https://www.equive.shop/#organization" },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.equive.shop" },
+      { "@type": "ListItem", position: 2, name: "Ons Verhaal", item: "https://www.equive.shop/ons-verhaal" },
+    ],
+  },
+};
+
 export default function OnsVerhaalPage() {
-  return <OnsVerhaalContent />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(onsVerhaalJsonLd) }}
+      />
+      <OnsVerhaalContent />
+    </>
+  );
 }

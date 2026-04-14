@@ -22,6 +22,31 @@ export const metadata: Metadata = {
   },
 };
 
+const kwaliteitJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Kwaliteit & Technologie | EQUIVE",
+  description:
+    "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
+  url: "https://www.equive.shop/kwaliteit",
+  publisher: { "@id": "https://www.equive.shop/#organization" },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.equive.shop" },
+      { "@type": "ListItem", position: 2, name: "Kwaliteit & Technologie", item: "https://www.equive.shop/kwaliteit" },
+    ],
+  },
+};
+
 export default function KwaliteitPage() {
-  return <Features />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(kwaliteitJsonLd) }}
+      />
+      <Features />
+    </>
+  );
 }

@@ -32,6 +32,49 @@ export const metadata: Metadata = {
   },
 };
 
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact | EQUIVE",
+  description:
+    "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
+  url: "https://www.equive.shop/contact",
+  publisher: { "@id": "https://www.equive.shop/#organization" },
+  mainEntity: {
+    "@type": "Organization",
+    "@id": "https://www.equive.shop/#organization",
+    name: "EQUIVE",
+    email: "info@equive.shop",
+    url: "https://www.equive.shop",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "info@equive.shop",
+      contactType: "customer service",
+      availableLanguage: ["Dutch", "English"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Amsterdam",
+      addressCountry: "NL",
+    },
+  },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.equive.shop" },
+      { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.equive.shop/contact" },
+    ],
+  },
+};
+
 export default function ContactPage() {
-  return <ContactContent />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
+      <ContactContent />
+    </>
+  );
 }

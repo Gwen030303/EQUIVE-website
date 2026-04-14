@@ -23,8 +23,40 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Duurzaamheid | EQUIVE",
+    description:
+      "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+    images: ["/og-image.jpg"],
+  },
+};
+
+const duurzaamheidJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Duurzaamheid | EQUIVE",
+  description:
+    "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+  url: "https://www.equive.shop/duurzaamheid",
+  publisher: { "@id": "https://www.equive.shop/#organization" },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.equive.shop" },
+      { "@type": "ListItem", position: 2, name: "Duurzaamheid", item: "https://www.equive.shop/duurzaamheid" },
+    ],
+  },
 };
 
 export default function DuurzaamheidPage() {
-  return <Duurzaamheid />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(duurzaamheidJsonLd) }}
+      />
+      <Duurzaamheid />
+    </>
+  );
 }

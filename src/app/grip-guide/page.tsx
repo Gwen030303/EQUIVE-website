@@ -169,9 +169,33 @@ const benefits = [
   },
 ];
 
+const gripGuideJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Grip Guide — Waarom full-seat siliconen grip het verschil maakt",
+  description:
+    "Vergelijk kniegrip, half-seat en full-seat grip en leer waarom EQUIVE kiest voor maximale controle in het zadel.",
+  url: "https://www.equive.shop/grip-guide",
+  image: "https://www.equive.shop/og-image.jpg",
+  author: { "@id": "https://www.equive.shop/#organization" },
+  publisher: { "@id": "https://www.equive.shop/#organization" },
+  mainEntityOfPage: "https://www.equive.shop/grip-guide",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.equive.shop" },
+      { "@type": "ListItem", position: 2, name: "Grip Guide", item: "https://www.equive.shop/grip-guide" },
+    ],
+  },
+};
+
 export default function GripGuidePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gripGuideJsonLd) }}
+      />
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-end overflow-hidden bg-black">
         <Image
