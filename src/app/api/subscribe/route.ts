@@ -187,35 +187,36 @@ export async function POST(request: NextRequest) {
         ? waitlistConfirmationEmail(name)
         : newsletterConfirmationEmail(name);
 
-    // Send confirmation to subscriber + notification to owner
-    await Promise.allSettled([
-      transporter.sendMail({
-        from: `EQUIVE <${FROM_EMAIL}>`,
-        to: email,
-        subject: template.subject,
-        html: template.html,
-      }),
-      transporter.sendMail({
-        from: `EQUIVE <${FROM_EMAIL}>`,
-        to: NOTIFY_EMAIL,
-        subject: `Nieuwe ${type} aanmelding — ${email}`,
-        html: `<div style="font-family:sans-serif;font-size:14px;line-height:1.8;color:#333;">
-          <h2 style="margin:0 0 16px;">Nieuwe aanmelding</h2>
-          <p><strong>Type:</strong> ${type}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          ${name ? `<p><strong>Naam:</strong> ${name}</p>` : ""}
-          ${size ? `<p><strong>Maat:</strong> ${size}</p>` : ""}
-          ${source ? `<p><strong>Bron:</strong> ${source}</p>` : ""}
-          <p><strong>Tijd:</strong> ${new Date().toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam" })}</p>
-        </div>`,
-      }),
-    ]);
+    // Send confirmation to subscriber
+    await transporter.sendMail({
+      from: `EQUIVE <${FROM_EMAIL}>`,
+      to: email,
+      subject: template.subject,
+      html: template.html,
+    });
+
+    // Notification to owner (non-blocking)
+    transporter.sendMail({
+      from: `EQUIVE <${FROM_EMAIL}>`,
+      to: NOTIFY_EMAIL,
+      subject: `Nieuwe ${type} aanmelding — ${email}`,
+      html: `<div style="font-family:sans-serif;font-size:14px;line-height:1.8;color:#333;">
+        <h2 style="margin:0 0 16px;">Nieuwe aanmelding</h2>
+        <p><strong>Type:</strong> ${type}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        ${name ? `<p><strong>Naam:</strong> ${name}</p>` : ""}
+        ${size ? `<p><strong>Maat:</strong> ${size}</p>` : ""}
+        ${source ? `<p><strong>Bron:</strong> ${source}</p>` : ""}
+        <p><strong>Tijd:</strong> ${new Date().toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam" })}</p>
+      </div>`,
+    }).catch((err) => console.error("[subscribe] Owner notification failed:", err));
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[subscribe] Error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[subscribe] Error:", message);
     return NextResponse.json(
-      { error: "Er ging iets mis. Probeer het later opnieuw." },
+      { error: `E-mail kon niet worden verzonden: ${message}` },
       { status: 500 },
     );
   }
