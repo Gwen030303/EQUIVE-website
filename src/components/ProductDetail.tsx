@@ -3,11 +3,10 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "@/lib/cart-context";
+import { useWaitlist } from "@/lib/waitlist-context";
 import { Truck } from "@phosphor-icons/react/dist/ssr/Truck";
 import { ArrowCounterClockwise } from "@phosphor-icons/react/dist/ssr/ArrowCounterClockwise";
 import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
-import { CircleNotch } from "@phosphor-icons/react/dist/ssr/CircleNotch";
 import type { ShopifyProduct } from "@/lib/shopify";
 
 interface ProductDetailProps {
@@ -29,11 +28,9 @@ function formatPrice(amount: string, currencyCode: string) {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const { addItem, isLoading } = useCart();
+  const { openWaitlist } = useWaitlist();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
-  const [error, setError] = useState<string | null>(null);
-  const [added, setAdded] = useState(false);
 
   // Bouw option groups (bv. { Maat: ["XS","S","M"], Kleur: ["Zwart"] })
   const optionGroups = useMemo(() => {
@@ -92,23 +89,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     });
   };
 
-  const handleAddToCart = async () => {
-    if (!selectedVariant) {
-      setError("Selecteer eerst alle opties.");
-      return;
-    }
-    if (!selectedVariant.availableForSale) {
-      setError("Deze combinatie is niet beschikbaar.");
-      return;
-    }
-    try {
-      setError(null);
-      await addItem(selectedVariant.id);
-      setAdded(true);
-      setTimeout(() => setAdded(false), 2000);
-    } catch {
-      setError("Er ging iets mis. Probeer het opnieuw.");
-    }
+  const handleWaitlist = () => {
+    openWaitlist();
   };
 
   const images = product.images.edges;
@@ -255,36 +237,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   </div>
                 ))}
 
-              {/* Add to cart */}
+              {/* Waitlist CTA */}
               <button
-                onClick={handleAddToCart}
-                disabled={!allOptionsSelected || !selectedVariant?.availableForSale || isLoading}
-                className={`inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full ${
-                  added
-                    ? "bg-taupe text-white"
-                    : allOptionsSelected && selectedVariant?.availableForSale
-                    ? "bg-black text-white hover:bg-taupe cursor-pointer"
-                    : "bg-black/[0.06] text-black/50 cursor-not-allowed"
-                }`}
+                onClick={handleWaitlist}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
               >
-                {isLoading ? (
-                  <CircleNotch size={18} className="animate-spin" />
-                ) : added ? (
-                  "Toegevoegd!"
-                ) : !allOptionsSelected ? (
-                  "Selecteer een optie"
-                ) : !selectedVariant?.availableForSale ? (
-                  "Niet beschikbaar"
-                ) : (
-                  "Aan winkelwagen toevoegen"
-                )}
+                Sign up for early access
               </button>
-
-              {error && (
-                <p className="font-sans text-[15px] md:text-sm text-red-600">
-                  {error}
-                </p>
-              )}
 
               {/* Trust badges */}
               <div className="flex items-center justify-center gap-4 sm:gap-6 py-2 flex-wrap">

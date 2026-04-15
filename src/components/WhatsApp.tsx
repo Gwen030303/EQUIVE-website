@@ -32,7 +32,7 @@ export default function WhatsApp() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed bottom-24 md:bottom-8 right-4 md:right-6 z-30 flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20BD5A] shadow-lg transition-colors duration-200"
+          className="fixed bottom-36 md:bottom-8 right-4 md:right-6 z-[35] flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20BD5A] shadow-lg transition-colors duration-200"
         >
           <WhatsappLogo size={24} weight="fill" className="text-white" />
         </motion.a>

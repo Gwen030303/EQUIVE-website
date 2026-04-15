@@ -6,11 +6,11 @@ import { getProducts } from "@/lib/shopify";
 
 export const metadata: Metadata = {
   title: "Shop | EQUIVE",
-  description: "Bekijk de collectie premium rijbroeken van EQUIVE. Rijkleding ontworpen in Amsterdam — comfort én stijl, zonder concessies.",
+  description: "Shop de EQUIVE collectie: rijbroeken met siliconen grip voor dressuur en springen. Gratis verzending in Nederland, 30 dagen retour.",
   alternates: { canonical: "/shop" },
   openGraph: {
     title: "Shop | EQUIVE",
-    description: "Bekijk de collectie premium rijbroeken van EQUIVE. Rijkleding ontworpen in Amsterdam — comfort én stijl, zonder concessies.",
+    description: "Shop de EQUIVE collectie: rijbroeken met siliconen grip voor dressuur en springen. Gratis verzending in Nederland, 30 dagen retour.",
     url: "https://www.equive.shop/shop",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Shop | EQUIVE",
-    description: "Bekijk de collectie premium rijbroeken van EQUIVE. Rijkleding ontworpen in Amsterdam — comfort én stijl, zonder concessies.",
+    description: "Shop de EQUIVE collectie: rijbroeken met siliconen grip voor dressuur en springen. Gratis verzending in Nederland, 30 dagen retour.",
     images: ["/og-image.jpg"],
   },
 };
@@ -35,7 +35,7 @@ export default async function ShopPage() {
       {/* ── Hero ── */}
       <section className="relative h-[52vh] min-h-[380px] md:h-[60vh] md:min-h-[460px] w-full overflow-hidden">
         <Image
-          src="/shop-hero.png"
+          src="/shop-hero.webp"
           alt="EQUIVE Collectie"
           fill
           sizes="100vw"

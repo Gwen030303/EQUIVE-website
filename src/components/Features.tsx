@@ -144,7 +144,7 @@ export default function Features() {
       {/* ── Waarom EQUIVE — full-width image + overlay CTA ── */}
       <section className="relative min-h-[80vh] sm:min-h-[70vh] overflow-hidden">
         <Image
-          src="/detail-button.png"
+          src="/detail-button.webp"
           alt="EQUIVE rijbroek detail"
           fill
           sizes="100vw"

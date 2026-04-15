@@ -4,12 +4,12 @@ import Duurzaamheid from "@/components/Duurzaamheid";
 export const metadata: Metadata = {
   title: "Duurzaamheid | EQUIVE",
   description:
-    "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+    "Duurzaamheid bij EQUIVE: eerlijke productie, hoogwaardige materialen en recyclebare verpakkingen. Verantwoorde rijkleding zonder concessies aan kwaliteit.",
   alternates: { canonical: "/duurzaamheid" },
   openGraph: {
     title: "Duurzaamheid | EQUIVE",
     description:
-      "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+      "Duurzaamheid bij EQUIVE: eerlijke productie, hoogwaardige materialen en recyclebare verpakkingen. Verantwoorde rijkleding zonder concessies aan kwaliteit.",
     url: "https://www.equive.shop/duurzaamheid",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Duurzaamheid | EQUIVE",
     description:
-      "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+      "Duurzaamheid bij EQUIVE: eerlijke productie, hoogwaardige materialen en recyclebare verpakkingen. Verantwoorde rijkleding zonder concessies aan kwaliteit.",
     images: ["/og-image.jpg"],
   },
 };
@@ -37,7 +37,7 @@ const duurzaamheidJsonLd = {
   "@type": "WebPage",
   name: "Duurzaamheid | EQUIVE",
   description:
-    "Ontdek hoe EQUIVE werkt aan duurzame rijkleding. Eerlijke productie, hoogwaardige materialen, recyclebare verpakkingen en klimaatneutrale verzending.",
+    "Duurzaamheid bij EQUIVE: eerlijke productie, hoogwaardige materialen en recyclebare verpakkingen. Verantwoorde rijkleding zonder concessies aan kwaliteit.",
   url: "https://www.equive.shop/duurzaamheid",
   publisher: { "@id": "https://www.equive.shop/#organization" },
   breadcrumb: {

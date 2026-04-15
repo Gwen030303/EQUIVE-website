@@ -4,12 +4,12 @@ import ContactContent from "./ContactContent";
 export const metadata: Metadata = {
   title: "Contact | EQUIVE",
   description:
-    "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
+    "Neem contact op met EQUIVE voor vragen over rijbroeken, maatadvies, bestellingen of retourneren. Reactie binnen 24 uur.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact | EQUIVE",
     description:
-      "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
+      "Neem contact op met EQUIVE voor vragen over rijbroeken, maatadvies, bestellingen of retourneren. Reactie binnen 24 uur.",
     url: "https://www.equive.shop/contact",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | EQUIVE",
     description:
-      "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
+      "Neem contact op met EQUIVE voor vragen over rijbroeken, maatadvies, bestellingen of retourneren. Reactie binnen 24 uur.",
     images: ["/og-image.jpg"],
   },
 };
@@ -37,7 +37,7 @@ const contactJsonLd = {
   "@type": "ContactPage",
   name: "Contact | EQUIVE",
   description:
-    "Neem contact op met EQUIVE. Vragen over rijbroeken, bestellingen of retour? We helpen je graag.",
+    "Neem contact op met EQUIVE voor vragen over rijbroeken, maatadvies, bestellingen of retourneren. Reactie binnen 24 uur.",
   url: "https://www.equive.shop/contact",
   publisher: { "@id": "https://www.equive.shop/#organization" },
   mainEntity: {

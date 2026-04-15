@@ -52,7 +52,7 @@ export default function VideoTestimonials() {
                   {/* Thumbnail image */}
                   <Image
                     src={card.thumbnail}
-                    alt={`${card.name} video testimonial`}
+                    alt={`Video review van ${card.name} over de EQUIVE rijbroek`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 33vw"

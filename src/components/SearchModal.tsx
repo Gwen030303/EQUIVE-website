@@ -32,6 +32,8 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const filtered = query.trim()
     ? searchItems.filter((item) =>
@@ -51,31 +53,50 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     };
   }, [isOpen]);
 
-  /* Close on Escape */
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [isOpen, onClose]);
-
-  /* Auto-focus input when opened */
+  /* Save previous focus, auto-focus input, restore focus on close */
   useEffect(() => {
     if (isOpen) {
-      // Small timeout to let the animation start before focusing
+      previousFocusRef.current = document.activeElement as HTMLElement;
       const t = setTimeout(() => inputRef.current?.focus(), 100);
       return () => clearTimeout(t);
     } else {
       setQuery("");
+      previousFocusRef.current?.focus();
     }
   }, [isOpen]);
+
+  /* Focus trap + Escape to close */
+  useEffect(() => {
+    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key !== "Tab") return;
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Zoeken"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

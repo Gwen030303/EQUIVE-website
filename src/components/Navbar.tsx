@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bag } from "@phosphor-icons/react/dist/ssr/Bag";
+import { EnvelopeSimple } from "@phosphor-icons/react/dist/ssr/EnvelopeSimple";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
 import { X } from "@phosphor-icons/react/dist/ssr/X";
-import { useCart } from "@/lib/cart-context";
-import { User } from "@phosphor-icons/react/dist/ssr/User";
+import { useWaitlist } from "@/lib/waitlist-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SearchModal from "@/components/SearchModal";
@@ -27,9 +26,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { cart, openDrawer } = useCart();
-  const itemCount = cart?.totalQuantity ?? 0;
-  const accountUrl = `https://shop.equive.shop/account`;
+  const { openWaitlist } = useWaitlist();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -102,7 +99,7 @@ export default function Navbar() {
               <img
                 src="/logo.webp"
                 alt="EQUIVE"
-                className={`h-[90px] sm:h-[100px] md:h-[110px] w-auto transition-all duration-500 ${
+                className={`h-12 md:h-16 lg:h-20 w-auto transition-all duration-500 ${
                   isTransparent
                     ? "invert brightness-200 contrast-125"
                     : "brightness-0"
@@ -110,34 +107,29 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Right: waitlist + cart */}
+            {/* Right: waitlist CTA */}
             <div className="flex items-center gap-3 w-[160px] justify-end">
-              <a
-                href={accountUrl}
+              <button
+                onClick={openWaitlist}
                 className={`hidden md:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   isTransparent
                     ? "bg-white text-black hover:bg-white/85"
                     : "bg-black text-white hover:bg-taupe"
                 }`}
               >
-                <User size={16} weight="bold" />
-                Account
-              </a>
+                <EnvelopeSimple size={16} weight="bold" />
+                Early Access
+              </button>
               <button
-                onClick={openDrawer}
-                className={`relative inline-flex items-center justify-center w-11 h-11 transition-colors duration-300 ${
+                onClick={openWaitlist}
+                className={`md:hidden relative inline-flex items-center justify-center w-11 h-11 transition-colors duration-300 ${
                   isTransparent
                     ? "text-white hover:text-white/70"
                     : "text-black hover:text-black/60"
                 }`}
-                aria-label="Winkelwagen"
+                aria-label="Aanmelden voor early access"
               >
-                <Bag size={24} weight="regular" />
-                {itemCount > 0 && (
-                  <span className="absolute top-0 right-0 w-[18px] h-[18px] bg-taupe text-white text-[9px] font-semibold rounded-full flex items-center justify-center">
-                    {itemCount}
-                  </span>
-                )}
+                <EnvelopeSimple size={24} weight="regular" />
               </button>
             </div>
           </div>
@@ -204,7 +196,7 @@ export default function Navbar() {
                 <img
                   src="/logo.webp"
                   alt="EQUIVE"
-                  className="h-[110px] w-auto brightness-0"
+                  className="h-12 w-auto brightness-0"
                 />
               </Link>
               <button
@@ -261,28 +253,15 @@ export default function Navbar() {
               className="absolute bottom-0 left-0 right-0 px-6 pb-[max(2rem,env(safe-area-inset-bottom))]"
             >
               <div className="flex gap-3 mb-6">
-                <a
-                  href={accountUrl}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex-1 inline-flex items-center justify-center gap-2 min-h-[52px] bg-black text-white font-sans text-sm font-medium rounded-full"
-                >
-                  <User size={16} weight="bold" />
-                  Account
-                </a>
                 <button
                   onClick={() => {
                     setMobileOpen(false);
-                    openDrawer();
+                    openWaitlist();
                   }}
-                  className="relative inline-flex items-center justify-center w-[52px] h-[52px] border border-black/15 text-black rounded-full"
-                  aria-label="Winkelwagen"
+                  className="flex-1 inline-flex items-center justify-center gap-2 min-h-[52px] bg-black text-white font-sans text-sm font-medium rounded-full"
                 >
-                  <Bag size={20} weight="regular" />
-                  {itemCount > 0 && (
-                    <span className="absolute -top-1 -right-1 w-[18px] h-[18px] bg-taupe text-white text-[9px] font-semibold rounded-full flex items-center justify-center">
-                      {itemCount}
-                    </span>
-                  )}
+                  <EnvelopeSimple size={16} weight="bold" />
+                  Sign up for early access
                 </button>
               </div>
 

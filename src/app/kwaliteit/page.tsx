@@ -3,11 +3,11 @@ import Features from "@/components/Features";
 
 export const metadata: Metadata = {
   title: "Kwaliteit & Technologie | EQUIVE",
-  description: "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
+  description: "De technologie achter EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Getest op 500+ uur in het zadel.",
   alternates: { canonical: "/kwaliteit" },
   openGraph: {
     title: "Kwaliteit & Technologie | EQUIVE",
-    description: "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
+    description: "De technologie achter EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Getest op 500+ uur in het zadel.",
     url: "https://www.equive.shop/kwaliteit",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kwaliteit & Technologie | EQUIVE",
-    description: "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
+    description: "De technologie achter EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Getest op 500+ uur in het zadel.",
     images: ["/og-image.jpg"],
   },
 };
@@ -27,7 +27,7 @@ const kwaliteitJsonLd = {
   "@type": "WebPage",
   name: "Kwaliteit & Technologie | EQUIVE",
   description:
-    "Ontdek de technologie achter EQUIVE rijbroeken. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof.",
+    "De technologie achter EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Getest op 500+ uur in het zadel.",
   url: "https://www.equive.shop/kwaliteit",
   publisher: { "@id": "https://www.equive.shop/#organization" },
   breadcrumb: {

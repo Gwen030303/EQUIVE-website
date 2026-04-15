@@ -8,7 +8,9 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     if (!submitted) return;
@@ -18,23 +20,36 @@ export default function Newsletter() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || loading) return;
     if (!EMAIL_REGEX.test(email)) {
       setEmailError("Vul een geldig e-mailadres in.");
       return;
     }
     setEmailError("");
+    setSubmitError("");
+    setLoading(true);
+
     try {
-      await fetch("/api/subscribe", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, type: "newsletter" }),
       });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data.error || "Er ging iets mis. Probeer het opnieuw.");
+        return;
+      }
+
+      setSubmitted(true);
+      setEmail("");
     } catch {
-      // Sla lokaal op als fallback
+      setSubmitError("Geen verbinding. Controleer je internet en probeer het opnieuw.");
+    } finally {
+      setLoading(false);
     }
-    setSubmitted(true);
-    setEmail("");
   };
 
   return (
@@ -50,8 +65,8 @@ export default function Newsletter() {
             Mis niks
           </h2>
           <p className="font-sub font-normal text-base md:text-lg text-taupe-dark mt-3 max-w-lg mx-auto">
-            Schrijf je in en weet als eerste wanneer er nieuwe collecties,
-            early bird prijzen en behind-the-scenes updates zijn.
+            Schrijf je in en weet als eerste wanneer er nieuwe collecties
+            en behind-the-scenes updates zijn.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="flex items-center gap-2">
@@ -73,10 +88,10 @@ export default function Newsletter() {
           {submitted ? (
             <div className="mt-8">
               <p className="font-sub font-normal text-xl text-black">
-                Je bent erbij!
+                Bedankt! Je hoort snel van ons.
               </p>
               <p className="font-sans text-sm text-taupe-dark mt-2">
-                We nemen binnenkort contact met je op.
+                We houden je op de hoogte van alles.
               </p>
             </div>
           ) : (
@@ -93,6 +108,7 @@ export default function Newsletter() {
                     onChange={(e) => {
                       setEmail(e.target.value);
                       setEmailError("");
+                      setSubmitError("");
                     }}
                     placeholder="Je e-mailadres"
                     required
@@ -105,10 +121,15 @@ export default function Newsletter() {
                 </div>
                 <button
                   type="submit"
-                  className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 sm:py-3.5 border border-black text-black font-sans text-[13px] tracking-[0.18em] uppercase overflow-hidden rounded-lg transition-all duration-700 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
+                  disabled={loading}
+                  className={`group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 sm:py-3.5 border border-black text-black font-sans text-[13px] tracking-[0.18em] uppercase overflow-hidden rounded-lg transition-all duration-700 flex-shrink-0 ${
+                    loading
+                      ? "opacity-60 cursor-not-allowed"
+                      : "hover:scale-[1.02] active:scale-[0.98]"
+                  }`}
                 >
                   <span className="relative z-10 transition-colors duration-700 group-hover:text-off-white group-active:text-off-white">
-                    Aanmelden
+                    {loading ? "Bezig..." : "Aanmelden"}
                   </span>
                   <span className="absolute inset-0 bg-black -translate-x-full group-hover:translate-x-0 group-active:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 </button>
@@ -116,6 +137,11 @@ export default function Newsletter() {
               {emailError && (
                 <p className="font-sans text-sm text-[#C4756E] mt-2">
                   {emailError}
+                </p>
+              )}
+              {submitError && (
+                <p className="font-sans text-sm text-[#C4756E] mt-2">
+                  {submitError}
                 </p>
               )}
               <p className="font-sans text-[12px] text-taupe-dark/50 mt-5 tracking-wide">

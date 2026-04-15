@@ -12,6 +12,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 
 const INSTAGRAM_URL = "https://instagram.com/equiveequestrian";
+const CONTACT_EMAIL = "info@equive.shop";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactContent() {
@@ -30,7 +31,7 @@ export default function ContactContent() {
     return () => clearTimeout(timer);
   }, [submitted]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.message) return;
     if (!EMAIL_REGEX.test(formData.email)) {
@@ -38,15 +39,24 @@ export default function ContactContent() {
       return;
     }
     setEmailError("");
-    try {
-      await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, type: "contact" }),
-      });
-    } catch {
-      /* fallback */
-    }
+
+    // Bouw een mailto-link met alle formuliergegevens
+    const subject = encodeURIComponent(
+      formData.subject || "Contactformulier EQUIVE",
+    );
+    const body = encodeURIComponent(
+      [
+        formData.name ? `Naam: ${formData.name}` : null,
+        `E-mail: ${formData.email}`,
+        "",
+        formData.message,
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    );
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
     setSubmitted(true);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
@@ -91,10 +101,20 @@ export default function ContactContent() {
                   <div className="py-16 text-center">
                     <div className="w-12 h-[1.5px] bg-taupe mx-auto mb-6" />
                     <p className="font-sub font-medium text-2xl text-black">
-                      Bericht verzonden.
+                      Je e-mailapp is geopend.
                     </p>
                     <p className="font-sans text-base text-black/60 mt-3">
-                      We reageren binnen 24 uur. Meestal sneller.
+                      Verstuur het bericht via je e-mailapp om het af te ronden.
+                      We reageren binnen 24 uur.
+                    </p>
+                    <p className="font-sans text-sm text-black/40 mt-4">
+                      Lukt het niet? Mail ons direct op{" "}
+                      <a
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        className="text-taupe-dark underline underline-offset-2 hover:text-black transition-colors"
+                      >
+                        {CONTACT_EMAIL}
+                      </a>
                     </p>
                   </div>
                 ) : (

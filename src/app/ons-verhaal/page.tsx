@@ -4,12 +4,12 @@ import OnsVerhaalContent from "./OnsVerhaalContent";
 export const metadata: Metadata = {
   title: "Ons Verhaal | EQUIVE",
   description:
-    "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
+    "Het verhaal achter EQUIVE: waarom wij rijbroeken maken die comfort en stijl combineren. Ontworpen in Amsterdam, voor ruiters die meer willen.",
   alternates: { canonical: "/ons-verhaal" },
   openGraph: {
     title: "Ons Verhaal | EQUIVE",
     description:
-      "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
+      "Het verhaal achter EQUIVE: waarom wij rijbroeken maken die comfort en stijl combineren. Ontworpen in Amsterdam, voor ruiters die meer willen.",
     url: "https://www.equive.shop/ons-verhaal",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ons Verhaal | EQUIVE",
     description:
-      "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
+      "Het verhaal achter EQUIVE: waarom wij rijbroeken maken die comfort en stijl combineren. Ontworpen in Amsterdam, voor ruiters die meer willen.",
     images: ["/og-image.jpg"],
   },
 };
@@ -37,7 +37,7 @@ const onsVerhaalJsonLd = {
   "@type": "AboutPage",
   name: "Ons Verhaal | EQUIVE",
   description:
-    "Leer over de oprichting van EQUIVE. Geboren uit frustratie, gebouwd met passie. Ontdek onze kernwaarden.",
+    "Het verhaal achter EQUIVE: waarom wij rijbroeken maken die comfort en stijl combineren. Ontworpen in Amsterdam, voor ruiters die meer willen.",
   url: "https://www.equive.shop/ons-verhaal",
   publisher: { "@id": "https://www.equive.shop/#organization" },
   breadcrumb: {

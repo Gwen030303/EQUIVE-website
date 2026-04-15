@@ -58,71 +58,80 @@ function FAQItem({
   index: number;
 }) {
   const [open, setOpen] = useState(false);
+  const panelId = `faq-panel-${number}`;
+  const buttonId = `faq-button-${number}`;
 
   return (
     <FadeIn delay={index * 0.08}>
-      <button
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        className={`w-full text-left rounded-xl transition-all duration-300 p-5 sm:p-6 group min-h-[56px] ${
-          open
-            ? "bg-cream"
-            : "bg-sand hover:bg-cream/60"
-        }`}
-      >
-        <div className="flex items-start gap-3 sm:gap-4">
-          <motion.span
-            className={`font-headline text-2xl sm:text-3xl transition-colors duration-300 flex-shrink-0 ${
-              open ? "text-taupe" : "text-taupe/30"
-            }`}
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.07,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            {number}
-          </motion.span>
+      <div>
+        <button
+          id={buttonId}
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls={panelId}
+          className={`w-full text-left rounded-xl transition-all duration-300 p-5 sm:p-6 group min-h-[56px] ${
+            open
+              ? "bg-cream"
+              : "bg-sand hover:bg-cream/60"
+          }`}
+        >
+          <div className="flex items-start gap-3 sm:gap-4">
+            <motion.span
+              className={`font-headline text-2xl sm:text-3xl transition-colors duration-300 flex-shrink-0 ${
+                open ? "text-taupe" : "text-taupe/30"
+              }`}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.07,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              {number}
+            </motion.span>
 
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="font-sans text-sm sm:text-base font-medium text-black transition-colors duration-300">
-                {question}
-              </h3>
-              <div
-                className={`w-10 h-10 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                  open ? "bg-taupe/15" : "bg-white"
-                }`}
-              >
-                {open ? (
-                  <Minus size={16} className="text-taupe-dark" />
-                ) : (
-                  <Plus size={16} className="text-taupe-dark" />
-                )}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="font-sans text-sm sm:text-base font-medium text-black transition-colors duration-300">
+                  {question}
+                </h3>
+                <div
+                  className={`w-10 h-10 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                    open ? "bg-taupe/15" : "bg-white"
+                  }`}
+                >
+                  {open ? (
+                    <Minus size={16} className="text-taupe-dark" />
+                  ) : (
+                    <Plus size={16} className="text-taupe-dark" />
+                  )}
+                </div>
               </div>
             </div>
-
-            <AnimatePresence>
-              {open && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden"
-                >
-                  <p className="font-sans text-sm text-black/60 leading-relaxed mt-3 max-w-[55ch]">
-                    {answer}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
-        </div>
-      </button>
+        </button>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden px-5 sm:px-6"
+            >
+              <p className="font-sans text-sm text-black/60 leading-relaxed mt-3 mb-5 max-w-[55ch] pl-9 sm:pl-12">
+                {answer}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </FadeIn>
   );
 }

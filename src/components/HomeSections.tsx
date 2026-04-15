@@ -72,7 +72,7 @@ function Statement() {
         <div ref={imgRef} className="relative min-h-[60vh] lg:min-h-full overflow-hidden">
           <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-[-8%]">
             <Image
-              src="/statement-rider-4.png"
+              src="/statement-rider-4.webp"
               alt="Ruiter in het zadel met EQUIVE rijbroek — full-seat grip detail"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -112,7 +112,7 @@ function Statement() {
                 {[
                   { stat: "Full-seat", label: "Siliconen grip" },
                   { stat: "4-way", label: "Stretch stof" },
-                  { stat: "€79,99", label: "Early bird prijs" },
+                  { stat: "€79,99", label: "Direct-to-consumer" },
                 ].map((item) => (
                   <div key={item.label}>
                     <p className="font-headline font-bold text-2xl sm:text-3xl text-black leading-none">
@@ -198,12 +198,9 @@ function Product() {
                 <span className="font-headline font-bold text-3xl text-black tracking-[-0.01em]">
                   &euro;79,99
                 </span>
-                <span className="inline-block px-3 py-1 bg-taupe text-white font-sans text-[11px] font-medium tracking-[0.08em] uppercase rounded-full">
-                  Early Bird
-                </span>
               </div>
               <p className="font-sans text-[15px] sm:text-sm text-black/40 mt-2">
-                Regulier &euro;79,99 &middot; Gratis verzending
+                Gratis verzending
               </p>
 
               <div className="w-full h-px bg-black/[0.06] my-8" />
@@ -280,7 +277,7 @@ function Features() {
         <motion.div style={{ y: featImgY }} className="absolute inset-[-10%]">
           <Image
             src="/sig-grip-detail.webp"
-            alt="Full-seat silicone grip close-up"
+            alt="Close-up van de full-seat siliconen grip op de EQUIVE rijbroek"
             fill
             sizes="100vw"
             className="object-cover"
@@ -382,8 +379,8 @@ function Plan() {
     },
     {
       nr: "2",
-      title: "Bestel",
-      text: "Gratis verzending, altijd. Binnen 2–3 werkdagen bij je thuis.",
+      title: "Meld je aan",
+      text: "Schrijf je in voor early access en profiteer van de introductieprijs.",
     },
     {
       nr: "3",
@@ -489,7 +486,7 @@ function SocialProof() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/reviews-bg.png"
+          src="/reviews-bg.webp"
           alt=""
           fill
           sizes="100vw"
@@ -523,7 +520,7 @@ function SocialProof() {
               terug willen.
             </h2>
             <p className="font-sans text-base sm:text-lg text-white/70 mt-5">
-              4.8 uit 5 &middot; Beoordeeld door 50+ ruiters
+              Eerlijke ervaringen van ruiters door heel Nederland
             </p>
           </div>
         </FadeIn>
@@ -604,7 +601,7 @@ function LifestyleBreak() {
           className="group block relative w-full h-full"
         >
           <Image
-            src="/lifestyle-gallop-2.png"
+            src="/lifestyle-gallop-2.webp"
             alt="Ruiter in galop met EQUIVE rijbroek"
             fill
             sizes="(max-width: 768px) 100vw, 58vw"
@@ -636,7 +633,7 @@ function LifestyleBreak() {
           className="group block relative w-full h-full"
         >
           <Image
-            src="/detail-button.png"
+            src="/detail-button.webp"
             alt="EQUIVE rijbroek detail — drukknoop en glitter piping"
             fill
             sizes="(max-width: 768px) 100vw, 42vw"

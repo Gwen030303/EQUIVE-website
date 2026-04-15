@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   title: "EQUIVE | Premium Rijbroeken",
   description:
-    "EQUIVE — rijbroeken voor ruiters die niet kiezen tussen comfort en stijl. Premium ruiterkleding ontworpen in Amsterdam voor show jumping en dressuur. Ontdek The Signature Breech.",
+    "EQUIVE: premium rijbroeken met full-seat grip, ontworpen in Amsterdam. Comfort en stijl voor dressuur, springen en eventing. Bestel The Signature.",
   keywords: [
     "rijbroeken",
     "rijbroek",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EQUIVE | Premium Rijbroeken",
     description:
-      "EQUIVE — rijbroeken voor ruiters die niet kiezen tussen comfort en stijl. Premium ruiterkleding ontworpen in Amsterdam.",
+      "EQUIVE: premium rijbroeken met full-seat grip, ontworpen in Amsterdam. Comfort en stijl voor dressuur, springen en eventing. Bestel The Signature.",
     url: "https://www.equive.shop",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "EQUIVE | Premium Rijbroeken",
     description:
-      "EQUIVE — rijbroeken voor ruiters die niet kiezen tussen comfort en stijl. Premium ruiterkleding ontworpen in Amsterdam.",
+      "EQUIVE: premium rijbroeken met full-seat grip, ontworpen in Amsterdam. Comfort en stijl voor dressuur, springen en eventing. Bestel The Signature.",
     images: ["/og-image.jpg"],
   },
 };

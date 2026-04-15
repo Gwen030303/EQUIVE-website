@@ -27,7 +27,9 @@ export default function CollectionDrop() {
   });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     setTimeLeft(getTimeLeft());
@@ -43,23 +45,36 @@ export default function CollectionDrop() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || loading) return;
     if (!EMAIL_REGEX.test(email)) {
       setEmailError("Vul een geldig e-mailadres in.");
       return;
     }
     setEmailError("");
+    setSubmitError("");
+    setLoading(true);
+
     try {
-      await fetch("/api/subscribe", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, type: "collection-drop" }),
       });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data.error || "Er ging iets mis. Probeer het opnieuw.");
+        return;
+      }
+
+      setSubmitted(true);
+      setEmail("");
     } catch {
-      // Sla lokaal op als fallback
+      setSubmitError("Geen verbinding. Controleer je internet en probeer het opnieuw.");
+    } finally {
+      setLoading(false);
     }
-    setSubmitted(true);
-    setEmail("");
   };
 
   const units = [
@@ -149,6 +164,7 @@ export default function CollectionDrop() {
                         onChange={(e) => {
                           setEmail(e.target.value);
                           setEmailError("");
+                          setSubmitError("");
                         }}
                         placeholder="Je e-mailadres"
                         required
@@ -160,14 +176,24 @@ export default function CollectionDrop() {
                       />
                       <button
                         type="submit"
-                        className="group relative inline-flex items-center justify-center px-7 py-3.5 bg-taupe text-black font-sans text-[13px] tracking-[0.15em] uppercase overflow-hidden rounded-lg transition-all duration-500 hover:bg-taupe-light hover:scale-[1.03] active:scale-[0.97] flex-shrink-0"
+                        disabled={loading}
+                        className={`group relative inline-flex items-center justify-center px-7 py-3.5 bg-taupe text-black font-sans text-[13px] tracking-[0.15em] uppercase overflow-hidden rounded-lg transition-all duration-500 flex-shrink-0 ${
+                          loading
+                            ? "opacity-60 cursor-not-allowed"
+                            : "hover:bg-taupe-light hover:scale-[1.03] active:scale-[0.97]"
+                        }`}
                       >
-                        Aanmelden
+                        {loading ? "Bezig..." : "Aanmelden"}
                       </button>
                     </div>
                     {emailError && (
                       <p className="font-sans text-sm text-[#C4756E] mt-2">
                         {emailError}
+                      </p>
+                    )}
+                    {submitError && (
+                      <p className="font-sans text-sm text-[#C4756E] mt-2">
+                        {submitError}
                       </p>
                     )}
                   </form>

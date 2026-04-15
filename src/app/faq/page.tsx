@@ -3,11 +3,11 @@ import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = {
   title: "Veelgestelde Vragen | EQUIVE",
-  description: "Antwoorden op veelgestelde vragen over EQUIVE rijbroeken. Maatadvies, verzending, retour en meer.",
+  description: "Veelgestelde vragen over EQUIVE rijbroeken: maatadvies, verzending naar Nederland en België, retourbeleid en grip-informatie.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: "Veelgestelde Vragen | EQUIVE",
-    description: "Antwoorden op veelgestelde vragen over EQUIVE rijbroeken. Maatadvies, verzending, retour en meer.",
+    description: "Veelgestelde vragen over EQUIVE rijbroeken: maatadvies, verzending naar Nederland en België, retourbeleid en grip-informatie.",
     url: "https://www.equive.shop/faq",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Veelgestelde Vragen | EQUIVE",
-    description: "Antwoorden op veelgestelde vragen over EQUIVE rijbroeken. Maatadvies, verzending, retour en meer.",
+    description: "Veelgestelde vragen over EQUIVE rijbroeken: maatadvies, verzending naar Nederland en België, retourbeleid en grip-informatie.",
     images: ["/og-image.jpg"],
   },
 };
@@ -36,7 +36,7 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Voor welke discipline is de legging geschikt?",
+      name: "Voor welke discipline is de rijbroek geschikt?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "The Signature is ontworpen voor alle disciplines \u2014 dressuur, springen, eventing en recreatief rijden. De full-seat grip werkt in elk zadel.",
@@ -44,7 +44,7 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Kan ik de legging ook buiten het zadel dragen?",
+      name: "Kan ik de rijbroek ook buiten het zadel dragen?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Absoluut. Dat is precies waar EQUIVE voor staat. Van de stal naar de sportschool naar de stad \u2014 The Signature is ontworpen om er overal goed uit te zien.",
@@ -52,7 +52,7 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Hoe lang gaat een EQUIVE legging mee?",
+      name: "Hoe lang gaat een EQUIVE rijbroek mee?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Bij normaal gebruik en juiste verzorging gaat The Signature maanden mee. De siliconen grip en stof zijn getest op honderden uren in het zadel.",

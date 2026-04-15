@@ -44,7 +44,7 @@ export default function Ambassadors() {
                 <div className="relative aspect-[3/2] w-full overflow-hidden group">
                   <Image
                     src={a.image}
-                    alt={a.name}
+                    alt={`${a.name}, EQUIVE ambassadeur — ${a.discipline}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

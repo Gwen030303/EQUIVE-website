@@ -1,7 +1,6 @@
 "use client";
 
 import FadeIn from "./FadeIn";
-import { Star } from "@phosphor-icons/react/dist/ssr/Star";
 
 const testimonials = [
   {
@@ -50,20 +49,6 @@ export default function Testimonials() {
                 className="glass-light rounded-xl p-8 shadow-[0_2px_20px_rgba(0,0,0,0.04)]
                   card-glow transition-all duration-500"
               >
-                {/* Star rating */}
-                <div className="drop-shadow-[0_0_6px_rgba(176,141,87,0.3)]">
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star
-                        key={j}
-                        size={14}
-                        weight="fill"
-                        className="text-taupe"
-                      />
-                    ))}
-                  </div>
-                </div>
-
                 {/* Quote */}
                 <blockquote className="font-sans text-base text-black/85 leading-relaxed mt-4">
                   &ldquo;{t.quote}&rdquo;
@@ -96,12 +81,6 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* ── Rating summary ── */}
-        <FadeIn delay={0.35}>
-          <p className="text-center font-sans text-sm text-taupe-dark mt-12">
-            4.8/5 &mdash; 50 tevreden ruiters
-          </p>
-        </FadeIn>
       </div>
     </section>
   );

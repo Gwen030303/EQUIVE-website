@@ -7,11 +7,11 @@ const PRODUCT_HANDLE = "the-signature";
 
 export const metadata: Metadata = {
   title: "The Signature Rijbroek | EQUIVE",
-  description: "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
+  description: "The Signature rijbroek van EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Voor dressuur, springen en eventing. Nu €64,95.",
   alternates: { canonical: "/product/the-signature" },
   openGraph: {
     title: "The Signature Rijbroek | EQUIVE",
-    description: "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
+    description: "The Signature rijbroek van EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Voor dressuur, springen en eventing. Nu €64,95.",
     url: "https://www.equive.shop/product/the-signature",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Signature Rijbroek | EQUIVE",
-    description: "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
+    description: "The Signature rijbroek van EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Voor dressuur, springen en eventing. Nu €64,95.",
     images: ["/og-image.jpg"],
   },
 };
@@ -33,7 +33,7 @@ const jsonLd = {
       "@type": "Product",
       name: "The Signature Rijbroek",
       description:
-        "The Signature — de ultieme rijbroek van EQUIVE. Full-seat siliconen grip, 4-way stretch, vochtregulerende stof. Vanaf €79,99.",
+        "The Signature rijbroek van EQUIVE: full-seat siliconen grip, 4-way stretch en vochtregulerende stof. Voor dressuur, springen en eventing. Nu €64,95.",
       image: "https://www.equive.shop/product-signature.webp",
       url: "https://www.equive.shop/product/the-signature",
       brand: {
@@ -45,9 +45,9 @@ const jsonLd = {
       category: "Rijkleding > Rijbroeken",
       offers: {
         "@type": "Offer",
-        price: 79.95,
+        price: 64.95,
         priceCurrency: "EUR",
-        availability: "https://schema.org/PreOrder",
+        availability: "https://schema.org/InStock",
         url: "https://www.equive.shop/product/the-signature",
       },
     },

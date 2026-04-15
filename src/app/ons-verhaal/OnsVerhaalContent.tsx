@@ -29,7 +29,7 @@ export default function OnsVerhaalContent() {
       {/* ── HERO ── */}
       <section className="relative aspect-[3/4] md:aspect-[2.2/1] w-full overflow-hidden">
         <Image
-          src="/hero-ons-verhaal-2.png"
+          src="/hero-ons-verhaal-2.webp"
           alt="Ruiter te paard bij zonsopkomst"
           fill
           priority
@@ -93,7 +93,7 @@ export default function OnsVerhaalContent() {
           <div ref={parallaxRef} className="relative min-h-[56vw] sm:min-h-[50vh] lg:min-h-full overflow-hidden">
             <motion.div style={{ y: imgY }} className="absolute inset-[-8%]">
               <Image
-                src="/story-gwen.png"
+                src="/story-gwen.webp"
                 alt="Gwen met twee paarden"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -225,7 +225,7 @@ export default function OnsVerhaalContent() {
       <section ref={teaserParallaxRef} className="relative min-h-[70vh] sm:min-h-[60vh] overflow-hidden">
         <motion.div style={{ y: teaserImgY }} className="absolute inset-[-8%]">
           <Image
-            src="/lifestyle-gallop-2.png"
+            src="/lifestyle-gallop-2.webp"
             alt="Ruiter in galop met EQUIVE rijbroek"
             fill
             sizes="100vw"

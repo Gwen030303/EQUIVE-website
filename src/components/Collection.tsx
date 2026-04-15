@@ -1,18 +1,16 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useMotionValue, AnimatePresence } from "framer-motion";
 import FadeIn from "./FadeIn";
 import Link from "next/link";
-import { useCart } from "@/lib/cart-context";
+import { useWaitlist } from "@/lib/waitlist-context";
 import { Minus } from "@phosphor-icons/react/dist/ssr/Minus";
 import { Plus } from "@phosphor-icons/react/dist/ssr/Plus";
 import { Truck } from "@phosphor-icons/react/dist/ssr/Truck";
 import { ArrowCounterClockwise } from "@phosphor-icons/react/dist/ssr/ArrowCounterClockwise";
 import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
-import { CircleNotch } from "@phosphor-icons/react/dist/ssr/CircleNotch";
-import { Star } from "@phosphor-icons/react/dist/ssr/Star";
 import { Horse } from "@phosphor-icons/react/dist/ssr/Horse";
 import { ArrowsOut } from "@phosphor-icons/react/dist/ssr/ArrowsOut";
 import { Drop } from "@phosphor-icons/react/dist/ssr/Drop";
@@ -163,11 +161,9 @@ interface ProductProps {
 export default function Product({ variantIdsBySize = {} }: ProductProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [added, setAdded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const { addItem, isLoading } = useCart();
+  const { openWaitlist } = useWaitlist();
 
   const mainImageRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
@@ -188,21 +184,8 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
     return () => observer.disconnect();
   }, []);
 
-  const handleAddToCart = async () => {
-    if (!selectedSize) return;
-    const variantId = variantIdsBySize[selectedSize];
-    if (!variantId) {
-      setError("Deze maat is momenteel niet beschikbaar.");
-      return;
-    }
-    try {
-      setError(null);
-      await addItem(variantId);
-      setAdded(true);
-      setTimeout(() => setAdded(false), 2000);
-    } catch {
-      setError("Er ging iets mis. Probeer het opnieuw.");
-    }
+  const handleWaitlist = () => {
+    openWaitlist();
   };
 
   const handleSwipe = (direction: number) => {
@@ -311,7 +294,7 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-taupe/15 rounded-full mb-3">
                     <span className="w-2 h-2 rounded-full bg-taupe animate-pulse" />
-                    <span className="font-sans text-[13px] font-medium text-taupe-dark">Pre-order</span>
+                    <span className="font-sans text-[13px] font-medium text-taupe-dark">Early Access — Beperkt tot 100 ruiters</span>
                   </div>
                   <h2 className="font-headline font-bold text-4xl sm:text-5xl text-black leading-[1.05] tracking-[-0.01em]">
                     The Signature
@@ -321,26 +304,22 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
                   </p>
                 </div>
 
-                {/* Price + reviews */}
-                <div className="flex items-center justify-between flex-wrap gap-3">
+                {/* Price */}
+                <div className="flex items-center flex-wrap gap-3">
                   <span className="font-headline font-bold text-3xl text-black">
-                    &euro;79,99
+                    &euro;64,95
                   </span>
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} size={14} weight="fill" className="text-taupe" />
-                      ))}
-                    </div>
-                    <span className="font-sans text-[15px] md:text-sm text-black/70">
-                      4.8/5
-                    </span>
-                  </div>
+                  <span className="font-sans text-base text-black/40 line-through">
+                    &euro;79,95
+                  </span>
+                  <span className="font-sans text-[13px] font-medium text-taupe bg-taupe/10 px-2 py-0.5 rounded-full">
+                    Early access prijs
+                  </span>
                 </div>
 
                 <div className="bg-off-white rounded-xl p-4">
                   <p className="font-sans text-[15px] md:text-sm font-medium text-black">
-                    Pre-order &mdash; Levertijd 8-10 weken
+                    Schrijf je in voor early access &mdash; wees er als eerste bij
                   </p>
                   <p className="font-sans text-[13px] text-black/60 mt-1">
                     Gratis verzending &middot; 30 dagen retour na ontvangst
@@ -381,45 +360,26 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
                           }`}
                         >
                           {size}
-                          {size === "M" && available && (
-                            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-taupe" title="Meest gekozen" />
-                          )}
                         </button>
                       );
                     })}
                   </div>
-                  <p className="font-sans text-[15px] md:text-[13px] text-black/60 mt-2">
-                    Maat M is het meest gekozen
-                  </p>
+                  <Link
+                    href="/maatquiz"
+                    className="inline-block font-sans text-[13px] text-[#B08D57] underline underline-offset-2 decoration-[#B08D57]/40 hover:decoration-[#B08D57] transition-colors duration-300 mt-2"
+                  >
+                    Twijfel over je maat? &rarr; Doe de maatquiz
+                  </Link>
                 </div>
 
-                {/* Add to Cart */}
+                {/* Waitlist CTA */}
                 <button
                   ref={ctaRef}
-                  onClick={handleAddToCart}
-                  disabled={!selectedSize || isLoading}
-                  className={`inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full ${
-                    added
-                      ? "bg-taupe text-white"
-                      : selectedSize
-                      ? "bg-black text-white hover:bg-taupe cursor-pointer"
-                      : "bg-black/[0.06] text-black/50 cursor-not-allowed"
-                  }`}
+                  onClick={handleWaitlist}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
                 >
-                  {isLoading ? (
-                    <CircleNotch size={18} className="animate-spin" />
-                  ) : added ? (
-                    "Toegevoegd!"
-                  ) : selectedSize ? (
-                    `Pre-order — Maat ${selectedSize}`
-                  ) : (
-                    "Selecteer een maat"
-                  )}
+                  Sign up for early access
                 </button>
-
-                {error && (
-                  <p className="font-sans text-[15px] md:text-sm text-red-600">{error}</p>
-                )}
 
                 {/* Trust badges */}
                 <div className="flex items-center justify-center gap-4 sm:gap-6 py-2 flex-wrap">
@@ -525,16 +485,16 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
             <p className="font-headline font-bold text-base text-black leading-tight">
               The Signature
             </p>
-            <p className="font-sans text-[15px] text-black/60">&euro;79,99</p>
+            <p className="font-sans text-[15px] text-black/60">
+              <span>&euro;64,95</span>
+              <span className="text-black/30 line-through ml-2">&euro;79,95</span>
+            </p>
           </div>
           <button
-            onClick={selectedSize ? handleAddToCart : () => {
-              const el = document.getElementById("product");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={handleWaitlist}
             className="px-6 py-3.5 min-h-[48px] bg-black text-white font-sans text-[15px] font-medium rounded-full hover:bg-taupe transition-all duration-300 active:scale-[0.98] flex-shrink-0"
           >
-            {selectedSize ? `Pre-order — ${selectedSize}` : "Kies een maat"}
+            Sign up for early access
           </button>
         </div>
       </motion.div>

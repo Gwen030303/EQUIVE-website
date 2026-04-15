@@ -6,11 +6,11 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "Grip Guide | EQUIVE",
   description:
-    "Ontdek waarom full-seat siliconen grip het verschil maakt. Vergelijk kniegrip, half-seat en full-seat grip en leer waarom EQUIVE kiest voor maximale controle.",
+    "Kniegrip, half-seat of full-seat? Vergelijk de drie soorten rijbroekgrip en ontdek waarom full-seat siliconen grip maximale stabiliteit biedt in het zadel.",
   alternates: { canonical: "/grip-guide" },
   openGraph: {
     title: "Grip Guide | EQUIVE",
-    description: "Ontdek waarom full-seat siliconen grip het verschil maakt. Vergelijk kniegrip, half-seat en full-seat grip en leer waarom EQUIVE kiest voor maximale controle.",
+    description: "Kniegrip, half-seat of full-seat? Vergelijk de drie soorten rijbroekgrip en ontdek waarom full-seat siliconen grip maximale stabiliteit biedt in het zadel.",
     url: "https://www.equive.shop/grip-guide",
     siteName: "EQUIVE",
     locale: "nl_NL",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Grip Guide | EQUIVE",
-    description: "Ontdek waarom full-seat siliconen grip het verschil maakt. Vergelijk kniegrip, half-seat en full-seat grip en leer waarom EQUIVE kiest voor maximale controle.",
+    description: "Kniegrip, half-seat of full-seat? Vergelijk de drie soorten rijbroekgrip en ontdek waarom full-seat siliconen grip maximale stabiliteit biedt in het zadel.",
     images: ["/og-image.jpg"],
   },
 };

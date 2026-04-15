@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "./FadeIn";
-import { Star } from "@phosphor-icons/react/dist/ssr/Star";
 import { Check } from "@phosphor-icons/react/dist/ssr/Check";
 
 const features = [
@@ -120,12 +119,6 @@ export default function ProductTeaser() {
                     <span className="font-headline font-light text-3xl sm:text-4xl text-black tracking-wide">
                       &euro;79,99
                     </span>
-                    <span className="font-sans text-sm text-taupe-dark/55 line-through">
-                      &euro;79,99
-                    </span>
-                    <span className="font-sans text-[12px] tracking-[0.12em] uppercase text-taupe bg-taupe/8 px-3 py-1 rounded-full">
-                      Early Bird
-                    </span>
                   </div>
 
                   {/* Accent separator */}
@@ -149,22 +142,6 @@ export default function ProductTeaser() {
                     ))}
                   </ul>
 
-                  {/* Star rating */}
-                  <div className="flex items-center gap-3 mt-6">
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          size={14}
-                          weight="fill"
-                          className="text-taupe"
-                        />
-                      ))}
-                    </div>
-                    <span className="font-sans text-[13px] text-taupe-dark/50 tracking-wide">
-                      4.8/5 &mdash; 50 ruiters
-                    </span>
-                  </div>
 
                   {/* CTA — black fill-sweep */}
                   <div className="mt-10">

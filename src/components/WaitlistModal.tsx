@@ -27,6 +27,8 @@ export default function WaitlistModal() {
   const [size, setSize] = useState("");
   const [source, setSource] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Focus trap
   useEffect(() => {
@@ -71,23 +73,36 @@ export default function WaitlistModal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !size) return;
+    if (!email || !size || loading) return;
     if (!EMAIL_REGEX.test(email)) {
       setEmailError("Vul een geldig e-mailadres in.");
       return;
     }
     setEmailError("");
+    setSubmitError("");
+    setLoading(true);
+
     try {
-      await fetch("/api/subscribe", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, name, size, source, type: "waitlist" }),
       });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data.error || "Er ging iets mis. Probeer het opnieuw.");
+        return;
+      }
+
+      localStorage.setItem("equive-waitlist-joined", "true");
+      setSubmitted(true);
     } catch {
-      // Sla lokaal op als fallback
+      setSubmitError("Geen verbinding. Controleer je internet en probeer het opnieuw.");
+    } finally {
+      setLoading(false);
     }
-    localStorage.setItem("equive-waitlist-joined", "true");
-    setSubmitted(true);
   };
 
   const handleClose = () => {
@@ -161,15 +176,15 @@ export default function WaitlistModal() {
                     className="text-taupe mx-auto mb-3"
                   />
                   <h3 className="font-headline text-2xl sm:text-3xl uppercase text-black leading-[0.9] mb-2">
-                    Eerste collectie
+                    Sign up for
                     <br />
-                    komt eraan
+                    early access
                   </h3>
                   <p className="font-sans text-sm text-black/60 leading-relaxed max-w-[36ch] mx-auto">
-                    Beperkte oplage &mdash; 50 stuks. Meld je aan en bestel als
-                    eerste voor de early-bird prijs van
-                    <span className="font-medium text-black"> &euro;79,99</span>
-                    <span className="text-black/40 line-through ml-1">&euro;79,99</span>
+                    <span className="font-medium text-black">&euro;64,95</span>
+                    <span className="text-black/40 line-through ml-1.5">&euro;79,95</span>
+                    <br />
+                    Beperkt tot de eerste 100 klanten.
                   </p>
                 </div>
 
@@ -184,7 +199,7 @@ export default function WaitlistModal() {
                         id="wl-email"
                         type="email"
                         value={email}
-                        onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                        onChange={(e) => { setEmail(e.target.value); setEmailError(""); setSubmitError(""); }}
                         placeholder="naam@voorbeeld.nl"
                         required
                         className={`${inputClass} mt-1.5 ${emailError ? "!border-[#C4756E]" : ""}`}
@@ -255,19 +270,28 @@ export default function WaitlistModal() {
                     </div>
                   </div>
 
+                  {/* Submit error */}
+                  {submitError && (
+                    <p className="font-sans text-sm text-[#C4756E] text-center">
+                      {submitError}
+                    </p>
+                  )}
+
                   {/* Submit */}
                   <button
                     type="submit"
-                    disabled={!email || !size}
-                    className={`w-full px-8 py-4 font-sans text-sm sm:text-[13px] tracking-[0.18em] uppercase rounded-full transition-all duration-500 active:scale-[0.98] mt-1 min-h-[52px] ${
-                      email && size
-                        ? "bg-black text-off-white hover:bg-warm-dark cursor-pointer"
+                    disabled={!email || !size || loading}
+                    className={`w-full px-8 py-4 font-sans text-sm sm:text-[13px] tracking-[0.18em] uppercase rounded-full transition-all duration-500 mt-1 min-h-[52px] ${
+                      email && size && !loading
+                        ? "bg-black text-off-white hover:bg-warm-dark cursor-pointer active:scale-[0.98]"
                         : "bg-sand text-black/60 cursor-not-allowed"
                     }`}
                   >
-                    {size
-                      ? `Schrijf me in — Maat ${size}`
-                      : "Selecteer een maat"}
+                    {loading
+                      ? "Bezig met aanmelden..."
+                      : size
+                        ? `Schrijf me in — Maat ${size}`
+                        : "Selecteer een maat"}
                   </button>
                 </form>
 

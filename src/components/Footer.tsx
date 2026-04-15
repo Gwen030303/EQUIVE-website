@@ -56,7 +56,7 @@ export default function Footer() {
                 className="object-contain object-left invert"
               />
             </div>
-            <p className="font-sans text-sm text-white/50 leading-relaxed mt-5 max-w-[30ch]">
+            <p className="font-sans text-sm text-white/70 leading-relaxed mt-5 max-w-[30ch]">
               Premium rijbroeken, ontworpen in Amsterdam. Van ruiter, voor ruiter.
             </p>
 
@@ -69,7 +69,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer nofollow"
                   aria-label={label}
-                  className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 text-white/50 hover:text-taupe transition-colors duration-300"
+                  className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 text-white/70 hover:text-taupe transition-colors duration-300"
                 >
                   <Icon size={22} weight="regular" />
                 </a>
@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([title, links], i) => (
             <FadeIn key={title} delay={0.2 + i * 0.1} className="md:col-span-2">
-              <h4 className="font-sans text-[12px] tracking-[0.12em] uppercase text-white/30 mb-4">
+              <h4 className="font-sans text-[12px] tracking-[0.12em] uppercase text-white/70 mb-4">
                 {title}
               </h4>
               <ul className="flex flex-col gap-1 sm:gap-3">
@@ -88,7 +88,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-sans text-sm text-white/60 hover:text-white transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
+                      className="font-sans text-sm text-white/70 hover:text-white transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
                     >
                       {link.label}
                     </Link>
@@ -105,19 +105,19 @@ export default function Footer() {
         {/* Sub-footer */}
         <FadeIn delay={0.5}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 pt-8">
-            <p className="font-sans text-[13px] text-white/30">
+            <p className="font-sans text-[13px] text-white/70">
               &copy; 2024&ndash;2026 EQUIVE. Alle rechten voorbehouden.
             </p>
             <div className="flex items-center gap-5">
               <Link
                 href="/privacybeleid"
-                className="font-sans text-[13px] text-white/30 hover:text-white/60 transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
+                className="font-sans text-[13px] text-white/70 hover:text-white transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
               >
                 Privacybeleid
               </Link>
               <Link
                 href="/algemene-voorwaarden"
-                className="font-sans text-[13px] text-white/30 hover:text-white/60 transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
+                className="font-sans text-[13px] text-white/70 hover:text-white transition-colors duration-300 inline-flex items-center min-h-[44px] sm:min-h-0"
               >
                 Algemene Voorwaarden
               </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
               (method) => (
                 <span
                   key={method}
-                  className="text-[12px] tracking-[0.06em] uppercase font-sans text-white/25 border border-white/[0.06] px-3 py-1.5 rounded-md"
+                  className="text-[12px] tracking-[0.06em] uppercase font-sans text-white/70 border border-white/[0.08] px-3 py-1.5 rounded-md"
                 >
                   {method}
                 </span>
