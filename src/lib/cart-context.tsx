@@ -123,9 +123,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   const goToCheckout = useCallback(() => {
-    if (cart?.checkoutUrl) {
-      window.location.href = cart.checkoutUrl;
+    if (!cart?.checkoutUrl) return;
+    // Shopify genereert de URL met het custom domein (shop.equive.shop) dat
+    // mogelijk nog niet volledig is geconfigureerd. Rewrite naar de
+    // .myshopify.com-domeinnaam die altijd werkt.
+    const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+    let url = cart.checkoutUrl;
+    if (SHOPIFY_DOMAIN) {
+      try {
+        const parsed = new URL(url);
+        parsed.host = SHOPIFY_DOMAIN;
+        url = parsed.toString();
+      } catch {
+        // fallback: use original
+      }
     }
+    window.location.href = url;
   }, [cart]);
 
   return (
