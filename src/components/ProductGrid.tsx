@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import type { ShopifyProductSummary } from "@/lib/shopify";
+import ShopEmptyState from "./ShopEmptyState";
 
 interface ProductGridProps {
   products: ShopifyProductSummary[];
@@ -23,21 +24,7 @@ function formatPrice(amount: string, currencyCode: string) {
 
 export default function ProductGrid({ products }: ProductGridProps) {
   if (products.length === 0) {
-    return (
-      <div className="max-w-2xl mx-auto text-center py-16">
-        <span className="font-sans text-[12px] tracking-[0.3em] uppercase text-taupe">
-          Binnenkort
-        </span>
-        <div className="w-12 h-px bg-taupe/25 mx-auto mt-4 mb-8" />
-        <h2 className="font-headline font-bold text-3xl sm:text-4xl text-black leading-[1.05] tracking-[-0.01em]">
-          De collectie wordt voorbereid
-        </h2>
-        <p className="font-sans text-[15px] text-black/60 leading-relaxed mt-4">
-          Onze eerste stukken zijn bijna klaar. Schrijf je in voor de wachtlijst
-          om als eerste te horen wanneer ze beschikbaar zijn.
-        </p>
-      </div>
-    );
+    return <ShopEmptyState />;
   }
 
   return (

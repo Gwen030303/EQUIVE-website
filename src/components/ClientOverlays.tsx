@@ -8,9 +8,6 @@ const CookieConsent = dynamic(() => import("@/components/CookieConsent"), {
 const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"), {
   ssr: false,
 });
-const ExitIntent = dynamic(() => import("@/components/ExitIntent"), {
-  ssr: false,
-});
 const AnalyticsLoader = dynamic(() => import("@/components/AnalyticsLoader"), {
   ssr: false,
 });
@@ -26,7 +23,6 @@ export default function ClientOverlays() {
     <>
       <CookieConsent />
       <ScrollToTop />
-      <ExitIntent />
       <AnalyticsLoader />
       <WaitlistModal />
       <CartDrawer />

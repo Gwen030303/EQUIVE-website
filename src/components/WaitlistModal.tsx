@@ -182,7 +182,7 @@ export default function WaitlistModal() {
                   </h3>
                   <p className="font-sans text-sm text-black/60 leading-relaxed max-w-[36ch] mx-auto">
                     <span className="font-medium text-black">&euro;64,95</span>
-                    <span className="text-black/40 line-through ml-1.5">&euro;79,95</span>
+                    <span className="text-black/40 line-through ml-1.5">&euro;79,99</span>
                     <br />
                     Beperkt tot de eerste 100 klanten.
                   </p>

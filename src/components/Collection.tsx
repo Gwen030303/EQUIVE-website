@@ -310,7 +310,7 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
                     &euro;64,95
                   </span>
                   <span className="font-sans text-base text-black/40 line-through">
-                    &euro;79,95
+                    &euro;79,99
                   </span>
                   <span className="font-sans text-[13px] font-medium text-taupe bg-taupe/10 px-2 py-0.5 rounded-full">
                     Early access prijs
@@ -378,7 +378,7 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
                   onClick={handleWaitlist}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
                 >
-                  Sign up for early access
+                  Meld je aan voor early access
                 </button>
 
                 {/* Trust badges */}
@@ -487,14 +487,14 @@ export default function Product({ variantIdsBySize = {} }: ProductProps) {
             </p>
             <p className="font-sans text-[15px] text-black/60">
               <span>&euro;64,95</span>
-              <span className="text-black/30 line-through ml-2">&euro;79,95</span>
+              <span className="text-black/30 line-through ml-2">&euro;79,99</span>
             </p>
           </div>
           <button
             onClick={handleWaitlist}
             className="px-6 py-3.5 min-h-[48px] bg-black text-white font-sans text-[15px] font-medium rounded-full hover:bg-taupe transition-all duration-300 active:scale-[0.98] flex-shrink-0"
           >
-            Sign up for early access
+            Meld je aan voor early access
           </button>
         </div>
       </motion.div>

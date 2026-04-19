@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Horse } from "@phosphor-icons/react/dist/ssr/Horse";
+
+export const metadata: Metadata = {
+  title: "Pagina niet gevonden | EQUIVE",
+  description: "De pagina die je zoekt bestaat niet of is verplaatst.",
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

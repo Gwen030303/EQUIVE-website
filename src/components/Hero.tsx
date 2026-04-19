@@ -48,7 +48,7 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.5, ease }}
                 className="font-headline font-bold text-[28px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] sm:leading-[1.05] tracking-[-0.01em] text-white"
               >
-                Rijbroeken voor ruiters die
+                Rijbroeken voor ruiters die{" "}
                 <br className="hidden sm:block" />
                 weigeren te kiezen.
               </motion.h1>

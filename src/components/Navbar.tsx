@@ -99,7 +99,7 @@ export default function Navbar() {
               <img
                 src="/logo.webp"
                 alt="EQUIVE"
-                className={`h-12 md:h-16 lg:h-20 w-auto transition-all duration-500 ${
+                className={`h-16 md:h-20 lg:h-24 w-auto transition-all duration-500 ${
                   isTransparent
                     ? "invert brightness-200 contrast-125"
                     : "brightness-0"
@@ -196,7 +196,7 @@ export default function Navbar() {
                 <img
                   src="/logo.webp"
                   alt="EQUIVE"
-                  className="h-12 w-auto brightness-0"
+                  className="h-14 w-auto brightness-0"
                 />
               </Link>
               <button
@@ -261,7 +261,7 @@ export default function Navbar() {
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[52px] bg-black text-white font-sans text-sm font-medium rounded-full"
                 >
                   <EnvelopeSimple size={16} weight="bold" />
-                  Sign up for early access
+                  Meld je aan voor early access
                 </button>
               </div>
 

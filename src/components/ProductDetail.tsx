@@ -242,7 +242,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 onClick={handleWaitlist}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
               >
-                Sign up for early access
+                Meld je aan voor early access
               </button>
 
               {/* Trust badges */}

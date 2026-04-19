@@ -230,7 +230,7 @@ export default function GripGuidePage() {
       <section className="py-14 md:py-24 bg-off-white">
         <div className="max-w-[1880px] mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
-            <FadeIn className="md:col-span-5">
+            <FadeIn className="md:col-span-5 order-2 md:order-1">
               <p className="font-sans text-sm tracking-[0.3em] uppercase text-taupe-dark mb-4">
                 Wat is full-seat grip?
               </p>
@@ -239,9 +239,6 @@ export default function GripGuidePage() {
                 <br />
                 Stabiliteit
               </h2>
-            </FadeIn>
-
-            <FadeIn delay={0.15} className="md:col-span-7">
               <p className="font-sans text-[15px] sm:text-base text-black/70 leading-relaxed mb-6">
                 Full-seat siliconen grip biedt maximale stabiliteit in het zadel.
                 De grip loopt door over het volledige zitvlak &mdash; van knie
@@ -253,6 +250,18 @@ export default function GripGuidePage() {
                 ademend vermogen. Het resultaat: een rijbroek die met je
                 meebeweegt, zonder te verschuiven.
               </p>
+            </FadeIn>
+
+            <FadeIn delay={0.15} className="md:col-span-7 order-1 md:order-2">
+              <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden">
+                <Image
+                  src="/sig-grip-detail.webp"
+                  alt="EQUIVE full-seat siliconen grip close-up detail"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 58vw"
+                  className="object-cover"
+                />
+              </div>
             </FadeIn>
           </div>
         </div>
@@ -326,41 +335,57 @@ export default function GripGuidePage() {
       {/* ── Benefits ──────────────────────────────────────────────── */}
       <section className="py-14 md:py-24 bg-sand">
         <div className="max-w-[1880px] mx-auto px-5 md:px-8">
-          <FadeIn>
-            <p className="font-sans text-sm tracking-[0.3em] uppercase text-black/50 mb-3">
-              Voordelen
-            </p>
-            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.01em] text-black mb-10 md:mb-16">
-              Waarom
-              <br />
-              Full-Seat?
-            </h2>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 md:gap-8">
-            {benefits.map((benefit, i) => (
-              <FadeIn key={benefit.number} delay={i * 0.1}>
-                <div className="flex gap-4 sm:gap-6">
-                  <span className="font-headline text-4xl sm:text-5xl text-black/[0.06] leading-none select-none flex-shrink-0">
-                    {benefit.number}
-                  </span>
-                  <div>
-                    <h3 className="font-headline text-lg sm:text-xl font-bold leading-[1.1] tracking-[-0.01em] text-black mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="font-sans text-[15px] sm:text-sm text-black/70 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <div className="md:col-span-5">
+              <FadeIn>
+                <p className="font-sans text-sm tracking-[0.3em] uppercase text-black/50 mb-3">
+                  Voordelen
+                </p>
+                <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.01em] text-black mb-10 md:mb-12">
+                  Waarom
+                  <br />
+                  Full-Seat?
+                </h2>
               </FadeIn>
-            ))}
+
+              <div className="space-y-7 md:space-y-8">
+                {benefits.map((benefit, i) => (
+                  <FadeIn key={benefit.number} delay={i * 0.1}>
+                    <div className="flex gap-4 sm:gap-6">
+                      <span className="font-headline text-4xl sm:text-5xl text-black/[0.06] leading-none select-none flex-shrink-0">
+                        {benefit.number}
+                      </span>
+                      <div>
+                        <h3 className="font-headline text-lg sm:text-xl font-bold leading-[1.1] tracking-[-0.01em] text-black mb-2">
+                          {benefit.title}
+                        </h3>
+                        <p className="font-sans text-[15px] sm:text-sm text-black/70 leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+
+            <FadeIn delay={0.2} className="md:col-span-7">
+              <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden">
+                <Image
+                  src="/product-grip-detail.webp"
+                  alt="EQUIVE rijbroek full-seat grip detail"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 58vw"
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* ── Alle Technologieën ──────────────────────────────────── */}
-      <section className="py-14 md:py-24 bg-off-white">
+      <section className="py-14 md:py-24 bg-off-white overflow-hidden">
         <div className="max-w-[1880px] mx-auto px-5 md:px-8">
           <FadeIn>
             <p className="font-sans text-sm tracking-[0.3em] uppercase text-black/50 mb-3">
@@ -371,6 +396,19 @@ export default function GripGuidePage() {
               <br />
               E&eacute;n Rijbroek
             </h2>
+          </FadeIn>
+
+          {/* Full-width lifestyle image */}
+          <FadeIn className="mb-10 md:mb-16">
+            <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
+              <Image
+                src="/lifestyle-fullseat.webp"
+                alt="EQUIVE rijbroek in actie — full-seat grip technologie"
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -432,28 +470,42 @@ export default function GripGuidePage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────── */}
-      <section className="py-14 md:py-24 bg-black">
-        <div className="max-w-[1880px] mx-auto px-5 md:px-8 text-center">
-          <FadeIn>
-            <p className="font-sans text-sm tracking-[0.3em] uppercase text-white/50 mb-4">
-              Klaar om het verschil te voelen?
-            </p>
-            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.01em] text-white mb-6">
-              Ervaar
-              <br />
-              The Signature
-            </h2>
-            <p className="font-sans text-[15px] sm:text-base text-white/70 max-w-[46ch] mx-auto mb-10">
-              De rijbroek met full-seat siliconen grip. Voor ruiters die
-              niet willen kiezen tussen comfort en stijl.
-            </p>
-            <Link
-              href="/product/the-signature"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-taupe text-black font-sans text-sm tracking-[0.15em] uppercase rounded-full hover:bg-taupe-light transition-all duration-300 active:scale-[0.98] min-h-[48px]"
-            >
-              Bekijk The Signature &rarr;
-            </Link>
-          </FadeIn>
+      <section className="relative py-14 md:py-24 bg-black overflow-hidden">
+        <div className="max-w-[1880px] mx-auto px-5 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <FadeIn className="md:col-span-6 text-center md:text-left">
+              <p className="font-sans text-sm tracking-[0.3em] uppercase text-white/50 mb-4">
+                Klaar om het verschil te voelen?
+              </p>
+              <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.01em] text-white mb-6">
+                Ervaar
+                <br />
+                The Signature
+              </h2>
+              <p className="font-sans text-[15px] sm:text-base text-white/70 max-w-[46ch] mb-10">
+                De rijbroek met full-seat siliconen grip. Voor ruiters die
+                niet willen kiezen tussen comfort en stijl.
+              </p>
+              <Link
+                href="/product/the-signature"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-taupe text-black font-sans text-sm tracking-[0.15em] uppercase rounded-full hover:bg-taupe-light transition-all duration-300 active:scale-[0.98] min-h-[48px]"
+              >
+                Bekijk The Signature &rarr;
+              </Link>
+            </FadeIn>
+
+            <FadeIn delay={0.15} className="md:col-span-6">
+              <div className="relative aspect-[3/4] max-w-[420px] mx-auto rounded-2xl overflow-hidden">
+                <Image
+                  src="/sig-pose.webp"
+                  alt="EQUIVE The Signature rijbroek"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 420px"
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
     </>

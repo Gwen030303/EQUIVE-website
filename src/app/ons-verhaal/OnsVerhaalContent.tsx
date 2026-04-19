@@ -119,7 +119,7 @@ export default function OnsVerhaalContent() {
                 </p>
                 <p className="font-sans text-base sm:text-[17px] text-black/70 leading-relaxed mt-4">
                   Als ruiter zocht ik maandenlang naar een broek die gewoon
-                  allebei kon. Die er professioneel uitziet op de parkour
+                  allebei kon. Die er professioneel uitziet op het parcours
                   &eacute;n lekker zit na drie uur training. Ik vond hem niet.
                   Dus maakte ik hem zelf.
                 </p>

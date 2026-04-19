@@ -255,6 +255,24 @@ const ADD_TO_CART = `
   ${CART_FRAGMENT}
 `;
 
+const GET_CART = `
+  query GetCart($cartId: ID!) {
+    cart(id: $cartId) { ...CartFields }
+  }
+  ${CART_FRAGMENT}
+`;
+
+export async function getCart(cartId: string): Promise<ShopifyCart | null> {
+  try {
+    const data = await shopifyFetch<{ cart: ShopifyCart | null }>(GET_CART, {
+      cartId,
+    });
+    return data.cart;
+  } catch {
+    return null;
+  }
+}
+
 export async function createCart(variantId: string, quantity = 1): Promise<ShopifyCart> {
   const data = await shopifyFetch<{ cartCreate: { cart: ShopifyCart } }>(
     CREATE_CART,

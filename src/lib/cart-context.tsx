@@ -1,7 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback } from "react";
-import { createCart, addToCart, updateCartItem, removeFromCart, type ShopifyCart } from "./shopify";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import {
+  createCart,
+  addToCart,
+  updateCartItem,
+  removeFromCart,
+  getCart,
+  type ShopifyCart,
+} from "./shopify";
 
 interface CartContextType {
   cart: ShopifyCart | null;
@@ -27,10 +34,34 @@ const CartContext = createContext<CartContextType>({
   closeDrawer: () => {},
 });
 
+const STORAGE_KEY = "equive-cart-id";
+
+function persistCartId(cart: ShopifyCart | null) {
+  if (typeof window === "undefined") return;
+  if (cart?.id) {
+    window.localStorage.setItem(STORAGE_KEY, cart.id);
+  } else {
+    window.localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<ShopifyCart | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    const storedId = window.localStorage.getItem(STORAGE_KEY);
+    if (!storedId) return;
+    (async () => {
+      const restored = await getCart(storedId);
+      if (restored && restored.totalQuantity > 0) {
+        setCart(restored);
+      } else {
+        window.localStorage.removeItem(STORAGE_KEY);
+      }
+    })();
+  }, []);
 
   const openDrawer = useCallback(() => setIsDrawerOpen(true), []);
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
@@ -39,13 +70,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     async (variantId: string) => {
       setIsLoading(true);
       try {
+        let next: ShopifyCart;
         if (cart) {
-          const updated = await addToCart(cart.id, variantId);
-          setCart(updated);
+          next = await addToCart(cart.id, variantId);
         } else {
-          const newCart = await createCart(variantId);
-          setCart(newCart);
+          next = await createCart(variantId);
         }
+        setCart(next);
+        persistCartId(next);
         setIsDrawerOpen(true);
       } catch (err) {
         console.error("Fout bij toevoegen aan winkelwagen:", err);
@@ -63,6 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       try {
         const updated = await updateCartItem(cart.id, lineId, quantity);
         setCart(updated);
+        persistCartId(updated);
       } catch (err) {
         console.error("Fout bij bijwerken:", err);
       } finally {
@@ -79,6 +112,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       try {
         const updated = await removeFromCart(cart.id, lineId);
         setCart(updated);
+        persistCartId(updated);
       } catch (err) {
         console.error("Fout bij verwijderen:", err);
       } finally {
