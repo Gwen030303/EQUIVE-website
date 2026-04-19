@@ -372,9 +372,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error("[subscribe] Error:", message);
+    // Log de echte fout voor debugging, maar toon gebruiker een vriendelijke melding
+    console.error("[subscribe] SMTP error:", message);
     return NextResponse.json(
-      { error: `E-mail kon niet worden verzonden: ${message}` },
+      {
+        error:
+          "We konden je aanmelding nu niet verwerken. Probeer het zo opnieuw, of stuur een mailtje naar support@equive.shop.",
+      },
       { status: 500 },
     );
   }
