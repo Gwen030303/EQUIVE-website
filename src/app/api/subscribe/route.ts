@@ -50,7 +50,7 @@ function waitlistConfirmationEmail(name?: string) {
           <tr>
             <td align="center" style="padding: 40px 32px 32px 32px; border-bottom: 1px solid #E8E5DE;">
               <a href="https://www.equive.shop" style="text-decoration:none; color:#000000;">
-                <img src="https://www.equive.shop/logo-email.png" alt="EQUIVE" width="220" style="display:block; border:0; outline:none; max-width:220px; height:auto;">
+                <img src="https://www.equive.shop/logo-email.png" alt="EQUIVE" width="300" style="display:block; border:0; outline:none; max-width:300px; height:auto;">
               </a>
             </td>
           </tr>
@@ -204,7 +204,7 @@ function newsletterConfirmationEmail(name?: string) {
           <tr>
             <td align="center" style="padding: 40px 32px 32px 32px; border-bottom: 1px solid #E8E5DE;">
               <a href="https://www.equive.shop" style="text-decoration:none; color:#000000;">
-                <img src="https://www.equive.shop/logo-email.png" alt="EQUIVE" width="220" style="display:block; border:0; outline:none; max-width:220px; height:auto;">
+                <img src="https://www.equive.shop/logo-email.png" alt="EQUIVE" width="300" style="display:block; border:0; outline:none; max-width:300px; height:auto;">
               </a>
             </td>
           </tr>
