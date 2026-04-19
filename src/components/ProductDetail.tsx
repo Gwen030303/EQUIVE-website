@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useWaitlist } from "@/lib/waitlist-context";
+import { useCart } from "@/lib/cart-context";
 import { Truck } from "@phosphor-icons/react/dist/ssr/Truck";
 import { ArrowCounterClockwise } from "@phosphor-icons/react/dist/ssr/ArrowCounterClockwise";
 import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
@@ -29,6 +30,7 @@ function formatPrice(amount: string, currencyCode: string) {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const { openWaitlist } = useWaitlist();
+  const { addItem, isLoading } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
 
@@ -87,6 +89,22 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       });
       return matchesThis && matchesOthers && edge.node.availableForSale;
     });
+  };
+
+  // Heeft dit product überhaupt verkoopbare varianten? (Zo nee → waitlist-flow)
+  const hasAnyBuyableVariant = useMemo(
+    () => product.variants.edges.some((e) => e.node.availableForSale),
+    [product]
+  );
+
+  const canBuy =
+    hasAnyBuyableVariant &&
+    allOptionsSelected &&
+    !!selectedVariant?.availableForSale;
+
+  const handleBuy = async () => {
+    if (!selectedVariant) return;
+    await addItem(selectedVariant.id);
   };
 
   const handleWaitlist = () => {
@@ -237,13 +255,33 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   </div>
                 ))}
 
-              {/* Waitlist CTA */}
-              <button
-                onClick={handleWaitlist}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
-              >
-                Meld je aan voor early access
-              </button>
+              {/* CTA: koop-knop als variant beschikbaar, anders waitlist */}
+              {hasAnyBuyableVariant ? (
+                <button
+                  onClick={handleBuy}
+                  disabled={!canBuy || isLoading}
+                  className={`inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full ${
+                    canBuy && !isLoading
+                      ? "bg-black text-white hover:bg-taupe cursor-pointer"
+                      : "bg-sand text-black/50 cursor-not-allowed"
+                  }`}
+                >
+                  {isLoading
+                    ? "Bezig..."
+                    : !allOptionsSelected
+                      ? "Kies een maat"
+                      : !selectedVariant?.availableForSale
+                        ? "Uitverkocht"
+                        : `In winkelmandje — ${displayPrice}`}
+                </button>
+              ) : (
+                <button
+                  onClick={handleWaitlist}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[56px] rounded-full font-sans text-[15px] font-medium transition-all duration-300 active:scale-[0.98] w-full bg-black text-white hover:bg-taupe cursor-pointer"
+                >
+                  Meld je aan voor early access
+                </button>
+              )}
 
               {/* Trust badges */}
               <div className="flex items-center justify-center gap-4 sm:gap-6 py-2 flex-wrap">
