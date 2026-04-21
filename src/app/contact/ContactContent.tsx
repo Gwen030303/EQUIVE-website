@@ -269,7 +269,7 @@ export default function ContactContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
             {[
               { q: "Hoe lang duurt de verzending?", a: "2\u20133 werkdagen binnen Nederland. Altijd gratis." },
-              { q: "Kan ik retourneren?", a: "Ja, binnen 30 dagen. Gratis via PostNL. Geen vragen." },
+              { q: "Kan ik ruilen of retourneren?", a: "Ruilen van maat is gratis binnen 30 dagen. Volledig retourneren kan ook — verzendkosten zijn dan voor eigen rekening." },
               { q: "Welke maat moet ik kiezen?", a: "Gebruik onze maatquiz \u2014 in 30 seconden weet je het." },
               { q: "Wanneer wordt mijn bestelling verzonden?", a: "Bestellingen voor 16:00 worden dezelfde werkdag verzonden." },
               { q: "Waar worden de broeken gemaakt?", a: "Ontworpen in Amsterdam. Geproduceerd in Europa." },

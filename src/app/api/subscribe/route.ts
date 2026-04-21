@@ -132,8 +132,8 @@ function waitlistConfirmationEmail(name?: string) {
                     <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">in NL & BE</p>
                   </td>
                   <td align="center" width="33%" style="padding: 0 6px;">
-                    <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">30 dagen retour</p>
-                    <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">geen gedoe</p>
+                    <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">Gratis ruilen</p>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">andere maat nodig?</p>
                   </td>
                   <td align="center" width="33%" style="padding: 0 6px;">
                     <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">Premium kwaliteit</p>
@@ -248,8 +248,8 @@ function newsletterConfirmationEmail(name?: string) {
                     <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">in NL & BE</p>
                   </td>
                   <td align="center" width="33%" style="padding: 0 6px;">
-                    <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">30 dagen retour</p>
-                    <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">geen gedoe</p>
+                    <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">Gratis ruilen</p>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color:#7a7a7a;">andere maat nodig?</p>
                   </td>
                   <td align="center" width="33%" style="padding: 0 6px;">
                     <p style="margin:0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color:#000000; font-weight: 700;">Premium kwaliteit</p>

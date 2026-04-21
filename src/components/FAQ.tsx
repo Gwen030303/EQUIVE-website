@@ -35,7 +35,7 @@ const faqItems = [
   {
     question: "Wat als ik niet tevreden ben?",
     answer:
-      "Geen probleem. Je hebt 30 dagen om te retourneren, gratis via PostNL. We willen dat je 100% blij bent met je aankoop.",
+      "Zit de maat niet goed? Geen probleem — we ruilen gratis van maat binnen 30 dagen. Wil je het volledig retourneren? Dat kan ook binnen 30 dagen; de verzendkosten zijn dan voor eigen rekening.",
     number: "05",
   },
   {

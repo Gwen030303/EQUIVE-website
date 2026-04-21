@@ -44,9 +44,9 @@ const sections = [
       "Wij verzenden bestellingen binnen 1–2 werkdagen na ontvangst van de betaling. Verzending binnen Nederland is gratis. Voor verzending naar België kunnen verzendkosten in rekening worden gebracht. Je ontvangt een track & trace code zodra je bestelling is verzonden.",
   },
   {
-    title: "4. Retourneren",
+    title: "4. Ruilen en retourneren",
     content:
-      "Je hebt het recht om binnen 30 dagen na ontvangst van je bestelling het product te retourneren. Het product dient ongedragen, ongewassen en in de originele verpakking te worden teruggestuurd. Retourneren binnen Nederland is gratis via PostNL. Na ontvangst en controle van het geretourneerde product wordt het aankoopbedrag binnen 14 dagen teruggestort.",
+      "Je hebt het recht om binnen 30 dagen na ontvangst van je bestelling het product te ruilen voor een andere maat of volledig te retourneren. Het product dient ongedragen, ongewassen en in de originele verpakking te worden teruggestuurd. Bij het ruilen van een maat nemen wij de verzendkosten voor onze rekening. Bij een volledige retourzending zijn de verzendkosten voor eigen rekening. Na ontvangst en controle van het geretourneerde product wordt het aankoopbedrag binnen 14 dagen teruggestort.",
   },
   {
     title: "5. Garantie",

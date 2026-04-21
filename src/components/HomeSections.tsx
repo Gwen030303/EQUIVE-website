@@ -21,7 +21,7 @@ function UspStrip() {
 
   const usps = [
     { label: "Gratis verzending", sub: "Boven €50" },
-    { label: "30 dagen retour", sub: "Geen gedoe" },
+    { label: "Gratis ruilen", sub: "Andere maat nodig?" },
     { label: "Veilig betalen", sub: "iDEAL, Klarna & meer" },
     { label: "Klimaatneutraal", sub: "Verzonden" },
   ];
@@ -389,8 +389,8 @@ function Plan() {
     },
     {
       nr: "4",
-      title: "Niet blij? Retour.",
-      text: "30 dagen bedenktijd. Gratis retourneren via PostNL. Geen vragen.",
+      title: "Verkeerde maat? Geen probleem.",
+      text: "Binnen 30 dagen ruilen we gratis van maat. Volledig retourneren kan ook — verzendkosten zijn dan voor eigen rekening.",
     },
   ];
 
